@@ -1,6 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, ImageBackground, Image, Dimensions } from 'react-native';
 import { GiftedChat, InputToolbar, Bubble, Send } from 'react-native-gifted-chat';
+// import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator,
+} from 'react-native-indicators';
 import { Dialogflow_V2 } from 'react-native-dialogflow';
 import Colors from '../../../native-base-theme/variables/commonColor';
 import { Icon } from 'native-base';
@@ -9,6 +21,7 @@ import { Icon } from 'native-base';
 const botAvatar = require('../../assets/images/smart.png');
 
 const App = () => {
+  const [load, setLoad] = useState(false);
   const BOT = {
     _id: 2,
     name: 'Smarst Assist',
@@ -98,8 +111,9 @@ const App = () => {
         },
       };
     }
-
+    // setMessages((previousMessages) => GiftedChat.prepend(previousMessages, [load]));
     setMessages((previousMessages) => GiftedChat.append(previousMessages, [msg]));
+    setLoad(false);
   };
 
   // const onSend = (message = []) => {};
@@ -110,20 +124,30 @@ const App = () => {
     setMessages((previousMessages) => GiftedChat.append(previousMessages, message));
     let msg = message[0].text;
 
+    setLoad(true);
     Dialogflow_V2.requestQuery(
       msg,
-      (result) => handleGoogleResponse(result),
+      (result) => {
+        // setMessages((previousMessages) => GiftedChat.append(previousMessages, [load]));
+        handleGoogleResponse(result);
+      },
       (error) => console.log(error),
     );
   }, []);
 
   const onQuickReply = (quickReply = []) => {
-    setMessages((previousMessages) => GiftedChat.append(previousMessages, quickReply));
+    const add = [{ ...quickReply[0], _id: getToken() }];
+    console.log(add);
+    setMessages((previousMessages) => GiftedChat.append(previousMessages, add));
     console.log('test');
     let msg = quickReply[0].text;
+    setLoad(true);
     Dialogflow_V2.requestQuery(
       msg,
-      (result) => handleGoogleResponse(result),
+      (result) => {
+        // setMessages((previousMessages) => GiftedChat.append(previousMessages, [load]));
+        handleGoogleResponse(result);
+      },
       (error) => console.log(error),
     );
   };
@@ -145,9 +169,12 @@ const App = () => {
     <InputToolbar
       {...props}
       containerStyle={{
-        marginBottom: 5,
+        marginBottom: 7,
         elevation: 4,
         marginHorizontal: 15,
+        height: 50,
+        // alignItems: 'center',
+        justifyContent: 'center',
         borderRadius: 50,
         borderWidth: 0,
       }}
@@ -171,6 +198,22 @@ const App = () => {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
+      {load && (
+        <View style={{ alignItems: 'center', marginTop: 10 }}>
+          <View
+            style={{
+              height: 60,
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 150,
+              borderRadius: 15,
+              backgroundColor: '#eee',
+            }}
+          >
+            <DotIndicator color="#666" size={10} />
+          </View>
+        </View>
+      )}
       <View
         style={{
           bottom: 0,
@@ -179,7 +222,7 @@ const App = () => {
           right: 0,
           position: 'absolute',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}
       >
         <Image
@@ -190,6 +233,7 @@ const App = () => {
           }}
           // resizeMode="center"
         />
+        {/* <Bubbles size={10} color="#FFF" /> */}
       </View>
       <GiftedChat
         messages={messages}

@@ -45,7 +45,10 @@ const Login = () => {
             style={styles.input}
             placeholder="password"
           />
-          <TouchableOpacity onPress={() => Actions.pop()} style={{marginTop: 20, alignItems: 'flex-end', width: '100%'}}>
+          <TouchableOpacity
+            onPress={() => Actions.pop()}
+            style={{ marginTop: 20, alignItems: 'flex-end', width: '100%' }}
+          >
             <Text>Forgot your password ?</Text>
           </TouchableOpacity>
           <View
@@ -58,7 +61,12 @@ const Login = () => {
             }}
           >
             <View style={{ width: '45%' }}>
-              <Button title={'login'} color="#fff" bg={Colors.brandPrimary} />
+              <Button
+                title={'login'}
+                color="#fff"
+                bg={Colors.brandPrimary}
+                onPress={() => Actions.Main()}
+              />
             </View>
             <TouchableOpacity
               style={{

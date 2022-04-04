@@ -11,8 +11,8 @@ import Main from './index';
 
 const Index = (
   <Stack hideNavBar>
-   {/* <Scene key="Login" component={Login} />
-   <Scene key="Register" component={Register} /> */}
+   <Scene key="Login" component={Login} />
+   <Scene key="Register" component={Register} />
     {/* <Scene key="Login" component={LoginScreen} />
     <Scene key="Register" component={RegisterSreen} />
     <Scene key="ConditionsScreen" component={ConditionsScreen} />
