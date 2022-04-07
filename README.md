@@ -10,7 +10,7 @@
     <li><b>Parainage</b> Ici le robt procure des conseils à l'étudiant afin de pouvoir l'accompagner durant son cycle à l'université</li>
   </ul>
   <br />
-  <h2>Installation</2>
+  <h2>Installation</h2>
   <p>Tous d'abord il faut installer l'environnement react-native dans votre machine</p>
   <p>Après avoir cloné le projet il faut</p>
   <ul>
