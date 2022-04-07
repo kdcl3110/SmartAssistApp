@@ -16,7 +16,7 @@
   <ul>
     <li>Installer les dépendances avec un gestionnaire de dépendance <i>yarn</i> ou <i>npm</i></li>
     <li>Démarrer le serveur avec la commande <i>npm start</i> ou <i>yarn start</i></li>
-    <li>connecter le téléphone à l'ordinateur et taper la commande <i>npm run android</i>. Rassurez vous que le mode développeur est activé sur votre appareil ainsi que le débogage usb<li>
+    <li>connecter le téléphone à l'ordinateur et taper la commande <i>npm run android</i>. Rassurez vous que le mode développeur est activé sur votre appareil ainsi que le débogage usb</li>
   </ul>
   <br />
 </div>
