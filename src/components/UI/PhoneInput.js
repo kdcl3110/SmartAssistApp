@@ -1,30 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  StatusBar,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
+import { SafeAreaView, StyleSheet, View, StatusBar, TouchableOpacity, Text } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import CarrierInfo from 'react-native-carrier-info';
 // import translate from '../../containers/language/language';r
 import commonColor from '../../../native-base-theme/variables/commonColor';
 
-const App = ({
-  onChangeText, value = '', onChangeValid, color = 'black',
-}) => {
+const App = ({ onChangeText, value = '', onChangeValid, color = 'black' }) => {
   const [valu, setValue] = useState(value);
   const phoneInput = useRef(null);
 
   const [deviceCountry, setDeviceCountry] = useState('CM');
   useEffect(() => {
-    CarrierInfo.isoCountryCode()
-      .then((result) => {
-        setDeviceCountry(result);
-      });
+    CarrierInfo.isoCountryCode().then((result) => {
+      setDeviceCountry(result);
+    });
   }, []);
 
   return (
@@ -47,7 +37,14 @@ const App = ({
         // textInputStyle={{ color, marginHorizontal: -10 }}
         // textContainerStyle={{ backgroundColor: 'transparent', marginHorizontal: -10 }}
         textInputStyle={{ padding: 0, margin: 0 }}
-        textContainerStyle={{ padding: 0, margin: 0, height: 50, backgroundColor: null, marginLeft: -10 }}
+        textContainerStyle={{
+          padding: 0,
+          margin: 0,
+          height: 60,
+          // height: 40,
+          backgroundColor: null,
+          marginLeft: -10,
+        }}
         flagButtonStyle={{ marginHorizontal: -10 }}
       />
       {/* <View style={{

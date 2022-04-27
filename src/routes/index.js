@@ -7,7 +7,15 @@ import AppConfig from '../constants/config';
 import Colors from '../../native-base-theme/variables/commonColor';
 import CustomTabComponet from './customTabComponent';
 
-import { ArticlesForm, ArticlesList, ArticlesSingle, Login, Chat, Home } from '../containers';
+import {
+  ArticlesForm,
+  ArticlesList,
+  ArticlesSingle,
+  Login,
+  Chat,
+  Home,
+  Confirmation,
+} from '../containers';
 import AnimatedTabBar from '@gorhom/animated-tabbar';
 
 import AboutComponent from '../components/About';
@@ -20,7 +28,6 @@ const TabIcon = ({ focused, name, style }) => (
     name={name}
   />
 );
-
 
 const SettingsTab = ({ focused, style, label, iconName }) => {
   const borderColor = focused ? Colors.brandPrimary : '#FFFFFF';
@@ -59,7 +66,6 @@ const Index = (
         swipeEnabled
         type="replace"
         tabBarComponent={CustomTabComponet}
-
         // tabBarPosition="top"
         // tabBarComponent={props => (
         //   <AnimatedTabBar tabs={tabs} {...props} />)
@@ -78,6 +84,7 @@ const Index = (
         >
           <Scene key="home" component={Home} hideNavBar />
           <Scene key="Chat" title={'Smart Assist'} component={Chat} hideTabBar />
+          <Scene key="Confirmation" title={'confirm_infos'} component={Confirmation} hideTabBar />
         </Stack>
 
         <Stack

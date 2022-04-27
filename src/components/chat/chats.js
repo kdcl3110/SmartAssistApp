@@ -16,11 +16,12 @@ import {
 import { Dialogflow_V2 } from 'react-native-dialogflow';
 import Colors from '../../../native-base-theme/variables/commonColor';
 import { Icon } from 'native-base';
+import { Actions } from 'react-native-router-flux';
 // import {dialogflowConfig} from './env';
 
 const botAvatar = require('../../assets/images/smart.png');
 
-const App = () => {
+const App = ({ replacelocalMessages, replaceResponseUser }) => {
   const [load, setLoad] = useState(false);
   const BOT = {
     _id: 2,
@@ -41,6 +42,28 @@ const App = () => {
       user: BOT,
     },
   ]);
+
+  useEffect(() => {
+    // console.log(messages);
+    replacelocalMessages([...messages]);
+
+    const responseUser = {};
+
+    messages.forEach((e, i, values) => {
+      // console.log( parseInt(e.text.split('-')[0]));
+      if (!isNaN(parseInt(e.text.split('-')[0])) && i - 1 > 0 && e.user._id === 2) {
+        console.log(parseInt(e.text.split('-')[0]));
+        responseUser[e.text.split('-')[0]] = values[i - 1].text;
+        console.log(responseUser);
+      }
+      if (e.text.split('-')[0] == 'récapitulatif ') {
+        Actions.Confirmation();
+        return;
+      }
+    });
+
+    replaceResponseUser({ ...responseUser });
+  }, [messages]);
 
   //   useEffect(() => {
   //     Dialogflow_V2.setConfiguration(
@@ -68,6 +91,23 @@ const App = () => {
     return result;
   };
 
+  const showQuickReplies = (values = []) => {
+    const renderTab = [];
+    values.forEach((e, i) => {
+      const quickReply = {
+        _id: getToken(),
+        title: `${e}`,
+        text: `${e}`,
+        user: { _id: 1 },
+        createdAt: new Date(),
+      };
+
+      renderTab.push(quickReply);
+    });
+
+    return renderTab;
+  };
+
   const sendBotResponse = (text) => {
     let msg = {
       _id: getToken(),
@@ -85,30 +125,26 @@ const App = () => {
         quickReplies: {
           type: 'radio',
           keepIt: true,
-          values: [
-            {
-              _id: getToken(),
-              title: 'Préinscriptions',
-              text: 'Préinscriptions',
-              user: { _id: 1 },
-              createdAt: new Date(),
-            },
-            {
-              _id: getToken(),
-              title: 'Parainage',
-              text: 'Parainage',
-              user: { _id: 1 },
-              createdAt: new Date(),
-            },
-            {
-              _id: getToken(),
-              title: 'Orientation',
-              text: 'Orientation',
-              user: { _id: 1 },
-              createdAt: new Date(),
-            },
-          ],
+          values: [...showQuickReplies(['Préinscriptions', 'Parainage', 'Orientation'])],
         },
+      };
+    } else if (text === '5 - Quel est votre sexe?') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['Homme', 'Femme']),
+      };
+    } else if (text === '6 - quel est votre statut matrimonial ?') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['Célibataire', 'Marier']),
+      };
+    } else if (text === '8 - Quel langue parlez-vous le plus ?') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['Français', 'Anglais']),
       };
     }
     // setMessages((previousMessages) => GiftedChat.prepend(previousMessages, [load]));
@@ -131,7 +167,10 @@ const App = () => {
         // setMessages((previousMessages) => GiftedChat.append(previousMessages, [load]));
         handleGoogleResponse(result);
       },
-      (error) => console.log(error),
+      (error) => {
+        console.log(error);
+        setLoad(false);
+      },
     );
   }, []);
 
@@ -148,7 +187,10 @@ const App = () => {
         // setMessages((previousMessages) => GiftedChat.append(previousMessages, [load]));
         handleGoogleResponse(result);
       },
-      (error) => console.log(error),
+      (error) => {
+        setLoad(false);
+        console.log(error);
+      },
     );
   };
 
@@ -173,7 +215,7 @@ const App = () => {
         elevation: 4,
         marginHorizontal: 15,
         height: 50,
-        // alignItems: 'center',
+        color: '#000',
         justifyContent: 'center',
         borderRadius: 50,
         borderWidth: 0,

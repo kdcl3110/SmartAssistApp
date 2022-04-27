@@ -21,7 +21,7 @@ const HeaderPage = (props) => {
   return (
     <Header
       style={
-        props.routeName == 'ProfileAffilier' || props.routeName == 'Notification'
+        props.title == 'confirm_infos' || props.routeName == 'Notification'
           ? { backgroundColor: 'white' }
           : props.navigationBarStyle
       }
@@ -38,7 +38,7 @@ const HeaderPage = (props) => {
                 padding: 10,
                 paddingLeft: 5,
                 color:
-                  props.routeName == 'ProfileAffilier' || props.routeName == 'Notification'
+                  props.title == 'confirm_infos' || props.routeName == 'Notification'
                     ? commonColor.brandPrimary
                     : 'white',
               }}
@@ -60,12 +60,22 @@ const HeaderPage = (props) => {
       )}
       {props.title == 'Smart Assist' && (
         <Body>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <Image
               source={require('../../assets/images/smart.png')}
               style={{ width: 35, height: 35 }}
             />
             <Title style={{ color: 'white', paddingLeft: 10 }}>{props.title}</Title>
+          </View>
+        </Body>
+      )}
+
+      {props.title == 'confirm_infos' && (
+        <Body>
+          <View style={{ flexDirection: 'row' }}>
+            <Title style={{ color: '#666', paddingLeft: 10 }}>
+              {props.title}
+            </Title>
           </View>
         </Body>
       )}

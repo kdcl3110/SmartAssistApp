@@ -202,6 +202,7 @@ export default {
   // InputGroup
   inputFontSize: 17,
   inputBorderColor: '#D9D5DC',
+  inputBackground: '#EEEEEE',
   inputSuccessBorderColor: '#2b8339',
   inputErrorBorderColor: '#de5b49',
   inputHeightBase: 50,
@@ -234,6 +235,7 @@ export default {
   inverseProgressColor: '#1A191B',
 
   // Radio Button
+  border: '#dddddd',
   radioBtnSize: platform === PLATFORM.IOS ? 25 : 23,
   radioSelectedColorAndroid: '#188c5f',
   radioBtnLineHeight: platform === PLATFORM.IOS ? 29 : 24,
