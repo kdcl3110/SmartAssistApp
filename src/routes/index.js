@@ -16,10 +16,6 @@ import {
   Home,
   Confirmation,
 } from '../containers';
-import AnimatedTabBar from '@gorhom/animated-tabbar';
-
-import AboutComponent from '../components/About';
-// import Login from '../containers/screens/Login';
 import Register from '../containers/screens/Register';
 
 const TabIcon = ({ focused, name, style }) => (

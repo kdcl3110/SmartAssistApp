@@ -23,6 +23,7 @@ const App = ({ onChangeText, value = '', onChangeValid, color = 'black' }) => {
       <PhoneInput
         ref={phoneInput}
         defaultValue={valu}
+        // value={695442264}
         defaultCode={deviceCountry.toUpperCase()}
         layout="first"
         onChangeText={(text) => {

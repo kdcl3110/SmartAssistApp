@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, ImageBackground, Image, Dimensions } from 'react-native';
+import { View, Text, Image, Dimensions } from 'react-native';
+import { Icon } from 'native-base';
 import { GiftedChat, InputToolbar, Bubble, Send } from 'react-native-gifted-chat';
+import { Actions } from 'react-native-router-flux';
 // import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
 import {
   BallIndicator,
@@ -14,15 +16,16 @@ import {
   WaveIndicator,
 } from 'react-native-indicators';
 import { Dialogflow_V2 } from 'react-native-dialogflow';
+import { Loading } from '../UI';
+import ModalUI from './modalFinish';
 import Colors from '../../../native-base-theme/variables/commonColor';
-import { Icon } from 'native-base';
-import { Actions } from 'react-native-router-flux';
 // import {dialogflowConfig} from './env';
 
 const botAvatar = require('../../assets/images/smart.png');
 
 const App = ({ replacelocalMessages, replaceResponseUser }) => {
   const [load, setLoad] = useState(false);
+  const [visible, setVisible] = useState(false);
   const BOT = {
     _id: 2,
     name: 'Smarst Assist',
@@ -57,24 +60,14 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
         console.log(responseUser);
       }
       if (e.text.split('-')[0] == 'récapitulatif ') {
-        Actions.Confirmation();
+        setVisible(true);
+        // Actions.Confirmation();
         return;
       }
     });
 
     replaceResponseUser({ ...responseUser });
   }, [messages]);
-
-  //   useEffect(() => {
-  //     Dialogflow_V2.setConfiguration(
-  //       dialogflowConfig.client_email,
-  //       dialogflowConfig.private_key,
-  //       Dialogflow_V2.LANG_FRENCH,
-  //       dialogflowConfig.project_id,
-  //     );
-
-  //     // console.log(new Date().getTime());
-  //   }, []);
 
   const handleGoogleResponse = (result) => {
     let text = result.queryResult.fulfillmentMessages[0].text.text[0];
@@ -128,19 +121,19 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
           values: [...showQuickReplies(['Préinscriptions', 'Parainage', 'Orientation'])],
         },
       };
-    } else if (text === '5 - Quel est votre sexe?') {
+    } else if (text === '5- Quel est votre sexe?') {
       msg.quickReplies = {
         type: 'radio',
         keepIt: true,
         values: showQuickReplies(['Homme', 'Femme']),
       };
-    } else if (text === '6 - quel est votre statut matrimonial ?') {
+    } else if (text === '6- quel est votre statut matrimonial ?') {
       msg.quickReplies = {
         type: 'radio',
         keepIt: true,
-        values: showQuickReplies(['Célibataire', 'Marier']),
+        values: showQuickReplies(['Célibataire', 'Marié']),
       };
-    } else if (text === '8 - Quel langue parlez-vous le plus ?') {
+    } else if (text === '8- Quel langue parlez-vous le plus ?') {
       msg.quickReplies = {
         type: 'radio',
         keepIt: true,
@@ -229,8 +222,6 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
         style={{
           marginHorizontal: 5,
           padding: 10,
-          //   borderRadius: 50,
-          //   backgroundColor: Colors.brandPrimary,
         }}
       >
         <Icon style={{ color: Colors.brandPrimary, fontSize: 23 }} name="send" />
@@ -240,20 +231,25 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: '#fff' }}>
+      <ModalUI modalVisible={visible} setModalVisible={setVisible} />
       {load && (
-        <View style={{ alignItems: 'center', marginTop: 10 }}>
-          <View
-            style={{
-              height: 60,
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 150,
-              borderRadius: 15,
-              backgroundColor: '#eee',
-            }}
-          >
-            <DotIndicator color="#666" size={10} />
-          </View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'center',
+            position: 'absolute',
+            zIndex: 3,
+            elevation: 3,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            top: 0,
+            bottom: 0,
+            right: 0,
+            left: 0,
+            alignItems: 'center',
+          }}
+        >
+          <DotIndicator color="#fff" size={10} />
         </View>
       )}
       <View
@@ -275,7 +271,6 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
           }}
           // resizeMode="center"
         />
-        {/* <Bubbles size={10} color="#FFF" /> */}
       </View>
       <GiftedChat
         messages={messages}
