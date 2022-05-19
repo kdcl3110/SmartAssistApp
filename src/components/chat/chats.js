@@ -34,13 +34,13 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
   const [messages, setMessages] = useState([
     {
       _id: 2,
-      text: 'Tapez "Modules" pour commencer',
+      text: 'Tapez "Modules" pour  commencer',
       createdAt: new Date(),
       user: BOT,
     },
     {
       _id: 1,
-      text: "Bonjour, je m'appelle smart.assist",
+      text: "Bonjour, je m'appelle \nSmart Assist",
       createdAt: new Date(),
       user: BOT,
     },
@@ -102,9 +102,17 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
   };
 
   const sendBotResponse = (text) => {
+    // console.log();
+    let newText = '';
+    const newChaine = text.split('\\n');
+    console.log(newChaine);
+    newChaine.forEach((e) => {
+      newText += `\n${e}`;
+    });
+
     let msg = {
       _id: getToken(),
-      text,
+      text: newText,
       createdAt: new Date(),
       user: BOT,
     };
@@ -139,8 +147,59 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
         keepIt: true,
         values: showQuickReplies(['Français', 'Anglais']),
       };
+    } else if (
+      text ===
+      "Vous venez surement d'avoir votre baccalauréat et vous chercher la filière parfaite qui vous permettra d'obtenir le travail de vos rêves; Mais sachez que votre orientation  dépendra  de vos compétences et notes obtenus à vos différent diplômes. Pour continuer veillez sélectionner votre diplôme parmi la liste suivante"
+    ) {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies([
+          'A',
+          'B',
+          'C',
+          'D',
+          'E',
+          'F1',
+          'F2',
+          'F3',
+          'F4',
+          'F5',
+          'F6',
+          'F7',
+          'F8',
+          'TI',
+          'MEB',
+          'IB',
+          'CB',
+          'CHB',
+          'SPB',
+          'GCE A LEVEL',
+          'GCE O LEVEL',
+        ]),
+      };
+    } else if (text === 'liste de filières scientifique') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies([
+          'informatique',
+          'biochimie',
+          'biologie animale',
+          'biologie végétale',
+          'chimie',
+          'mathématique',
+          'physique',
+          "science de la terre et de l'univère",
+          'micobiologie',
+          'bioscience',
+          'geoscience',
+          'ict for development',
+          'chimie inorganique',
+          'chimie organique',
+        ]),
+      };
     }
-    // setMessages((previousMessages) => GiftedChat.prepend(previousMessages, [load]));
     setMessages((previousMessages) => GiftedChat.append(previousMessages, [msg]));
     setLoad(false);
   };
@@ -148,7 +207,6 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
   // const onSend = (message = []) => {};
 
   const onSend = useCallback((message = []) => {
-    // setMessages(GiftedChat.append(messages, message));
     console.log(message);
     setMessages((previousMessages) => GiftedChat.append(previousMessages, message));
     let msg = message[0].text;
@@ -157,7 +215,6 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
     Dialogflow_V2.requestQuery(
       msg,
       (result) => {
-        // setMessages((previousMessages) => GiftedChat.append(previousMessages, [load]));
         handleGoogleResponse(result);
       },
       (error) => {
@@ -169,7 +226,6 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
 
   const onQuickReply = (quickReply = []) => {
     const add = [{ ...quickReply[0], _id: getToken() }];
-    console.log(add);
     setMessages((previousMessages) => GiftedChat.append(previousMessages, add));
     console.log('test');
     let msg = quickReply[0].text;

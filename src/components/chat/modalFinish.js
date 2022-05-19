@@ -59,7 +59,7 @@ const priceRangerModal = (props) => (
         </View> 
         <View style={{ marginBottom: 20 }}>
           <ButtonUI
-            title={'Vérifier mes informations'}
+            title={'Vérifier mes informations'} 
             onPress={() => { 
               props?.setModalVisible(false);
               Actions.Confirmation();

@@ -79,7 +79,7 @@ const Index = (
           navigationBarStyle={{ backgroundColor: Colors.brandPrimary }}
         >
           <Scene key="home" component={Home} hideNavBar />
-          <Scene key="Chat" title={'Smart Assist'} component={Chat} hideTabBar />
+          <Scene key='Chat' component={Chat} title="Smart Assist" hideTabBar />
           <Scene key="Confirmation" title={'confirm_infos'} component={Confirmation} hideTabBar />
         </Stack>
 
