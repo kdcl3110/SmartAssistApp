@@ -147,38 +147,33 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
         keepIt: true,
         values: showQuickReplies(['Français', 'Anglais']),
       };
-    } else if (
-      text ===
-      "Vous venez surement d'avoir votre baccalauréat et vous chercher la filière parfaite qui vous permettra d'obtenir le travail de vos rêves; Mais sachez que votre orientation  dépendra  de vos compétences et notes obtenus à vos différent diplômes. Pour continuer veillez sélectionner votre diplôme parmi la liste suivante"
-    ) {
+    } else if (text === 'orientation') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['faculté des sciences', 'faculté des lettres']),
+      };
+    } else if (text === 'que voulez vous savoir sur la faculté des sciences') {
       msg.quickReplies = {
         type: 'radio',
         keepIt: true,
         values: showQuickReplies([
-          'A',
-          'B',
-          'C',
-          'D',
-          'E',
-          'F1',
-          'F2',
-          'F3',
-          'F4',
-          'F5',
-          'F6',
-          'F7',
-          'F8',
-          'TI',
-          'MEB',
-          'IB',
-          'CB',
-          'CHB',
-          'SPB',
-          'GCE A LEVEL',
-          'GCE O LEVEL',
+          'fs - filières',
+          'fs - description',
+          'fs - structure administrative',
         ]),
       };
-    } else if (text === 'liste de filières scientifique') {
+    } else if (text === 'que voulez vous savoir sur la faculté des lettres') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies([
+          'falsh - filières',
+          'falsh - description',
+          'falsh - structure administrative',
+        ]),
+      };
+    } else if (text === 'liste des filières de la faculté des lettres') {
       msg.quickReplies = {
         type: 'radio',
         keepIt: true,
@@ -199,7 +194,60 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
           'chimie organique',
         ]),
       };
+    } else if (text === 'liste des filières de la faculté des sciences') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies([
+          'géographie',
+          'histoire',
+          'allemand',
+          'lettre moderne française',
+          'sociologie',
+          'anglais',
+          'antropologie',
+          'arts et archéologie',
+          'langue africaines et linguistique',
+          'lettre bilingue',
+          'littérature et civilisation française',
+          'psychologie',
+          'science du language',
+          'tourisme et hotellerie',
+        ]),
+      };
     }
+    // else if (
+    //   text ===
+    //   "Vous venez surement d'avoir votre baccalauréat et vous chercher la filière parfaite qui vous permettra d'obtenir le travail de vos rêves; Mais sachez que votre orientation  dépendra  de vos compétences et notes obtenus à vos différent diplômes. Pour continuer veillez sélectionner votre diplôme parmi la liste suivante"
+    // ) {
+    //   msg.quickReplies = {
+    //     type: 'radio',
+    //     keepIt: true,
+    //     values: showQuickReplies([
+    //       'A',
+    //       'B',
+    //       'C',
+    //       'D',
+    //       'E',
+    //       'F1',
+    //       'F2',
+    //       'F3',
+    //       'F4',
+    //       'F5',
+    //       'F6',
+    //       'F7',
+    //       'F8',
+    //       'TI',
+    //       'MEB',
+    //       'IB',
+    //       'CB',
+    //       'CHB',
+    //       'SPB',
+    //       'GCE A LEVEL',
+    //       'GCE O LEVEL',
+    //     ]),
+    //   };
+    // }
     setMessages((previousMessages) => GiftedChat.append(previousMessages, [msg]));
     setLoad(false);
   };
