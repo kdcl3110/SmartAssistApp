@@ -13,13 +13,10 @@ const Login = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/images/num2.png')}
-        style={{ position: 'absolute', top: -1, right: -1 }}
+        source={require('../../assets/images/bg.png')}
+        style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }}
       />
-      <Image
-        source={require('../../assets/images/2num1.png')}
-        style={{ position: 'absolute', bottom: -3, left: -1 }}
-      />
+       
       <ScrollView style={{ flex: 1, alignSelf: 'stretch', paddingHorizontal: 15 }}>
         <View style={{ marginBottom: 60, marginTop: 150 }}>
           <Text style={{ fontSize: 40, fontWeight: 'bold' }}>Let's Login</Text>

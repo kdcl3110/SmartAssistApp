@@ -14,21 +14,21 @@ export default function Head({ color }) {
       {color
         ? (
           <Transition shared="logo" style={{}}>
-            <Image
+            {/* <Image
               source={require('../../assets/images/logo_green.png')}
               resizeMode="contain"
               style={{ width: 100, height: 80 }}
-            />
+            /> */}
 
           </Transition>
         )
         : (
           <Transition shared="logo" style={{}}>
-            <Image
+            {/* <Image
               source={require('../../assets/images/logo.png')}
               resizeMode="contain"
               style={{ width: 100, height: 80 }}
-            />
+            /> */}
 
           </Transition>
         )}

@@ -107,7 +107,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
     const newChaine = text.split('\\n');
     console.log(newChaine);
     newChaine.forEach((e) => {
-      newText += `\n${e}`;
+      newText += `${e}\n`;
     });
 
     let msg = {
@@ -148,12 +148,13 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
         values: showQuickReplies(['Français', 'Anglais']),
       };
     } else if (text === 'orientation') {
+      msg.text = 'Choisissez votre faculté';
       msg.quickReplies = {
         type: 'radio',
         keepIt: true,
         values: showQuickReplies(['faculté des sciences', 'faculté des lettres']),
       };
-    } else if (text === 'que voulez vous savoir sur la faculté des sciences') {
+    } else if (text === 'Que voulez-vous savoir sur la faculté des sciences ?') {
       msg.quickReplies = {
         type: 'radio',
         keepIt: true,
@@ -163,7 +164,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
           'fs - structure administrative',
         ]),
       };
-    } else if (text === 'que voulez vous savoir sur la faculté des lettres') {
+    } else if (text === 'Que voulez-vous savoir sur la faculté des lettres (FALSH) ?') {
       msg.quickReplies = {
         type: 'radio',
         keepIt: true,
@@ -173,7 +174,25 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
           'falsh - structure administrative',
         ]),
       };
-    } else if (text === 'liste des filières de la faculté des lettres') {
+    } else if (text === 'Que voulez-vous savoir sur la filière informatique ?') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['info - description', 'info - debouchés']),
+      };
+    } else if (text === 'Que voulez-vous savoir sur la filière mathématique ?') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['math - description', 'math - debouchés']),
+      };
+    } else if (text === 'Que voulez-vous savoir sur la filière chimie ?') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['chi - description', 'chi - debouchés']),
+      };
+    } else if (text === 'Listes des filières de la faculté des sciences') {
       msg.quickReplies = {
         type: 'radio',
         keepIt: true,
@@ -194,7 +213,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
           'chimie organique',
         ]),
       };
-    } else if (text === 'liste des filières de la faculté des sciences') {
+    } else if (text === 'Listes des filières de la faculté des lettres') {
       msg.quickReplies = {
         type: 'radio',
         keepIt: true,
@@ -296,10 +315,14 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
       {...props}
       timeTextStyle={{
         right: { color: 'white' },
-        left: { color: 'black' },
+        left: { color: 'white' },
+      }}
+      textStyle={{
+        left: { color: 'white' },
       }}
       wrapperStyle={{
         // left: {backgroundColor: 'white'},
+        left: { backgroundColor: 'rgba(180,189,199, 0.3)' },
         right: { backgroundColor: Colors.brandPrimary },
       }}
     />
@@ -308,6 +331,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
     <InputToolbar
       {...props}
       containerStyle={{
+        backgroundColor: 'rgba(180,189,199, 0.3)',
         marginBottom: 7,
         elevation: 4,
         marginHorizontal: 15,
@@ -334,7 +358,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
   );
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#fff' }}>
+    <View style={{ flex: 1, backgroundColor: '#2c3e50' }}>
       <ModalUI modalVisible={visible} setModalVisible={setVisible} />
       {load && (
         <View
@@ -356,7 +380,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
           <DotIndicator color="#fff" size={10} />
         </View>
       )}
-      <View
+      {/* <View
         style={{
           bottom: 0,
           top: 0,
@@ -375,7 +399,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
           }}
           // resizeMode="center"
         />
-      </View>
+      </View> */}
       <GiftedChat
         messages={messages}
         onSend={onSend}
