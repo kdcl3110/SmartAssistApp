@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Image, View } from 'react-native';
 import { Left, Title, Header, Body, Right, Thumbnail, Icon, Text, Item, Input } from 'native-base';
 import { Actions } from 'react-native-router-flux';
+import { Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
 // import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 // import { Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
 // import { TourGuideZone, useTourGuideController } from 'rn-tourguide';
 import commonColor from '../../../native-base-theme/variables/commonColor';
-// import translate from '../../containers/language/language';
+import translate from '../../containers/language/language';
 // import ImageZoom from './ImageZoom';
-// import CustomPickerSelect from './CustomPickerSelect';
+import CustomPickerSelect from './CustomPickerSelect';
+import { connect } from 'react-redux';
 
 const HeaderPage = (props) => {
   // const [notif, setNotif] = useState([]);
@@ -65,17 +67,107 @@ const HeaderPage = (props) => {
               source={require('../../assets/images/smart.png')}
               style={{ width: 35, height: 35 }}
             />
-            <Title style={{ color: 'white', paddingLeft: 10 }}>{props.title}</Title>
+            <Title style={{ color: 'white', paddingLeft: 10 }}>
+              {translate[props.title] ? translate[props.title] : props.title}
+            </Title>
           </View>
         </Body>
+      )}
+
+      {props.title == 'Smart Assist' && (
+        <Right>
+          <TouchableOpacity>
+            <Icon
+              type="MaterialIcons"
+              name="settings"
+              style={{
+                fontSize: 24,
+                padding: 10,
+                color: 'white',
+              }}
+            />
+          </TouchableOpacity>
+          <Menu
+            rendererProps={{
+              placement: 'bottom',
+              padding: 10,
+              borderRadius: 25,
+              marginTop: 40,
+            }}
+          >
+            <MenuTrigger>
+              <Icon
+                name="ellipsis-vertical-sharp"
+                style={{
+                  fontSize: 24,
+                  padding: 10,
+                  color: 'white',
+                }}
+              />
+            </MenuTrigger>
+            <MenuOptions>
+              <MenuOption value={1}>
+                <CustomPickerSelect
+                  style={{
+                    flex: 1,
+                    height: 40,
+                    backgroundColor: '#fff',
+                  }}
+                  placeholder={translate.language}
+                  options={[
+                    { name: `${translate.french}`, lang: 'fr', id: 1 },
+                    { name: `${translate.english}`, lang: 'en', id: 2 },
+                  ]}
+                  selectedValue={
+                    props?.language?.lang == 'fr'
+                      ? { name: translate.french, lang: 'fr', id: 1 }
+                      : { name: translate.english, lang: 'en', id: 2 }
+                  }
+                  onValueChange={async (val) => {
+                    if (val) {
+                      translate.setLanguage(val.lang);
+                      await props.replaceLanguage(val);
+                      await AsyncStorage.setItem('@Lang:locale', val.lang);
+                      await props.setLanguage();
+                    }
+                  }}
+                />
+              </MenuOption>
+              <MenuOption value={2}>
+                <TouchableOpacity
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Text>Profil</Text>
+                  {/* <View style={{ flex: 0.3 }}> */}
+                  <Icon name="person-circle-outline" />
+                  {/* </View> */}
+                </TouchableOpacity>
+              </MenuOption>
+              <MenuOption value={3}>
+                <TouchableOpacity
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Text>log out</Text>
+                  <Icon name="log-out" />
+                </TouchableOpacity>
+              </MenuOption>
+            </MenuOptions>
+          </Menu>
+        </Right>
       )}
 
       {props.title == 'confirm_infos' && (
         <Body>
           <View style={{ flexDirection: 'row' }}>
-            <Title style={{ color: '#666', paddingLeft: 10 }}>
-              {props.title}
-            </Title>
+            <Title style={{ color: '#666', paddingLeft: 10 }}>{translate[props.title] ? translate[props.title] : props.title}</Title>
           </View>
         </Body>
       )}
@@ -112,23 +204,23 @@ const HeaderPage = (props) => {
   );
 };
 const mapStateToProps = (state) => ({
-  affiliers: state.affiliers.affiliers || [],
-  listSearch: state.affiliers.listSearch || [],
-  search: state.affiliers.search,
+  // affiliers: state.affiliers.affiliers || [],
+  // listSearch: state.affiliers.listSearch || [],
+  // search: state.affiliers.search,
   currentUser: state.auth.currentUser,
-  language: state.profile.language,
-  currencies: state.countries.currencies,
-  tourGuides: state.auth.tourGuides,
-  isLoading: state.loading.global,
+  language: state.auth.language,
+  // currencies: state.countries.currencies,
+  // tourGuides: state.auth.tourGuides,
+  // isLoading: state.loading.global,
 });
 const mapDispatchToProps = (dispatch) => ({
-  replaceLanguage: dispatch.profile.replaceLanguage,
-  replaceSearch: dispatch.affiliers.replaceSearch,
-  replaceListSearch: dispatch.affiliers.replaceListSearch,
-  replaceCurrency: dispatch.auth.replaceCurrency,
-  replaceLaunchTuto: dispatch.auth.replaceLaunchTuto,
-  replaceTourGuides: dispatch.auth.replaceTourGuides,
-  updateUser: dispatch.auth.updateUser,
+  replaceLanguage: dispatch.auth.replaceLanguage,
+  //   replaceSearch: dispatch.affiliers.replaceSearch,
+  //   replaceListSearch: dispatch.affiliers.replaceListSearch,
+  //   replaceCurrency: dispatch.auth.replaceCurrency,
+  //   replaceLaunchTuto: dispatch.auth.replaceLaunchTuto,
+  //   replaceTourGuides: dispatch.auth.replaceTourGuides,
+  //   updateUser: dispatch.auth.updateUser,
 });
 
-export default HeaderPage;
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderPage);

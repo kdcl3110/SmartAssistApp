@@ -1,6 +1,14 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import { Container, Content, H1, H2, H3, Icon, Input, Item } from 'native-base';
 import { Spacer } from '../UI';
 import TextInput from '../UI/TextInput';
@@ -13,23 +21,27 @@ const Login = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/images/bg.png')}
-        style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }}
+        source={require('../../assets/images/Group1.png')}
+        style={{ position: 'absolute', top: -245, left: 0, width: Dimensions.get('window').width }}
+        resizeMode="contain"
       />
-       
+
+      <Image
+        source={require('../../assets/images/Group2.png')}
+        style={{ position: 'absolute', width: Dimensions.get('window').width, bottom: -55 }}
+        // resizeMethod="resize"
+        resizeMode="contain"
+      />
+
       <ScrollView style={{ flex: 1, alignSelf: 'stretch', paddingHorizontal: 15 }}>
-        <View style={{ marginBottom: 60, marginTop: 150 }}>
-          <Text style={{ fontSize: 40, fontWeight: 'bold' }}>Let's Login</Text>
-          <TouchableOpacity onPress={() => Actions.Register()}>
-            <Text>
-              You don't have an account ?{' '}
-              <Text style={{ fontWeight: 'bold', color: Colors.brandPrimary }}>Register</Text>
-            </Text>
-          </TouchableOpacity>
+        <View
+          style={{ marginBottom: 180, alignItems: 'flex-end', marginTop: 70, paddingRight: 15 }}
+        >
+          <Text style={{ fontSize: 40, fontFamily: 'Montserrat' }}>LOGIN</Text>
         </View>
         {/* <Spacer /> */}
         {/* <Spacer /> */}
-        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ alignItems: 'center', justifyContent: 'center', marginHorizontal: 10 }}>
           <Item style={[styles.input]}>
             <Icon name="mail" style={{ color: Colors.brandPrimary }} />
             <Input placeholder="Login" />
@@ -44,41 +56,64 @@ const Login = () => {
           />
           <TouchableOpacity
             onPress={() => Actions.pop()}
-            style={{ marginTop: 20, alignItems: 'flex-end', width: '100%' }}
+            style={{ marginTop: 15, alignItems: 'center', width: '100%' }}
           >
-            <Text>Forgot your password ?</Text>
+            <Text style={{ color: Colors.brandPrimary, fontFamily: 'Montserrat' }}>Forgot your password ?</Text>
           </TouchableOpacity>
           <View
             style={{
-              flexDirection: 'row',
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: 'center',
               width: '100%',
-              marginTop: 20,
+              marginTop: 15,
             }}
           >
-            <View style={{ width: '45%' }}>
+            <View style={{ width: '60%' }}>
               <Button
-                title={'login'}
+                title={'Sign in'}
                 color="#fff"
                 bg={Colors.brandPrimary}
                 onPress={() => Actions.Main()}
               />
             </View>
-            <TouchableOpacity
-              style={{
-                height: 40,
-                borderWidth: 1,
-                borderColor: '#ccc',
-                flexDirection: 'row',
-                borderRadius: 5,
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '45%',
-              }}
-            >
-              <Icon name="mail-outline" style={{ position: 'absolute', left: 5, color: '#999' }} />
-              <Text style={{ fontWeight: 'bold', color: '#999' }}>Gmail</Text>
+            <TouchableOpacity onPress={() => Actions.Register()} style={{ marginVertical: 15 }}>
+              <Text style={{fontFamily: 'Montserrat'}}>
+                You don't have an account ?{' '}
+                <Text style={{ color: Colors.brandPrimary, fontFamily: 'Montserrat bold' }}>Register</Text>
+              </Text>
+            </TouchableOpacity>
+            <Text style={{fontFamily: 'Montserrat'}}>Or whit</Text>
+          </View>
+          <View style={{marginTop: 10, flexDirection: 'row', justifyContent: 'space-around', width: '70%'}}>
+            <TouchableOpacity>
+              <Image
+                source={require('../../assets/images/Facebook.png')}
+                style={{
+                  width: 35,
+                  height: 35,
+                }}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image
+                source={require('../../assets/images/google.png')}
+                style={{
+                  width: 35,
+                  height: 35,
+                }}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Image
+                source={require('../../assets/images/Twitter.png')}
+                style={{
+                  width: 35,
+                  height: 35,
+                }}
+                resizeMode="contain"
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -99,14 +134,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   input: {
-    backgroundColor: '#fff6ed',
+    backgroundColor: '#efeaf1',
     height: 50,
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 10,
     paddingLeft: 15,
     borderBottomColor: Colors.brandPrimary,
   },
 });
 
-//make this component available to the app
+
 export default Login;

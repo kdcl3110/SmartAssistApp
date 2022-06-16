@@ -24,7 +24,7 @@ export default function Button({ title, onPress, bg = '#fff6ed', color }) {
           console.log('ok');
         }}
       >
-        <Text style={{ color }}>{title}</Text>
+        <Text style={{ color, fontFamily: 'Montserrat' }}>{title}</Text>
       </TouchableOpacity>
     </View>
   );

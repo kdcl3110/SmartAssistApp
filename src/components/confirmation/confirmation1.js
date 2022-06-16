@@ -14,27 +14,32 @@ import CustomPickerSelect from '../UI/CustomPickerSelect';
 import DateUI from '../UI/InputDate';
 import ButtonUI from '../UI/ButtonUI';
 import * as Toast from '../UI/Toast';
+import translate from '../../containers/language/language';
 
 // create a component
 const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
   const statusMat = [
     {
-      name: 'Célibataire',
+      name: translate.single,
       id: 1,
     },
     {
-      name: 'Marié',
+      name: translate.married,
+      id: 2,
+    },
+    {
+      name: translate.divorced,
       id: 2,
     },
   ];
 
   const firsLang = [
     {
-      name: 'Français',
+      name: translate.french,
       id: 1,
     },
     {
-      name: 'Anglais',
+      name: translate.english,
       id: 2,
     },
   ];
@@ -45,11 +50,11 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
   }, []);
 
   return (
-    <Content style={{ paddingHorizontal: 10, backgroundColor: '#f4f7fd' }} padder>
-      <Text style={styles.label}>Nom</Text>
+    <Content style={{ paddingHorizontal: 10 }} padder>
+      <Text style={styles.label}>{translate.last_name}</Text>
       <Item rounded style={styles.input}>
         <Input
-          placeholder="Nom"
+          placeholder={translate.last_name}
           value={responseUser[1]}
           onChangeText={(value) => {
             replaceResponseUser({ ...responseUser, 1: value });
@@ -57,10 +62,10 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         />
       </Item>
       <Spacer />
-      <Text style={styles.label}>Prenom</Text>
+      <Text style={styles.label}>{translate.first_name}</Text>
       <Item rounded style={styles.input}>
         <Input
-          placeholder="Prenom"
+          placeholder={translate.first_name}
           value={responseUser[2]}
           onChangeText={(value) => {
             replaceResponseUser({ ...responseUser, 2: value });
@@ -68,10 +73,10 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         />
       </Item>
       <Spacer />
-      <Text style={styles.label}>Date de Naissance</Text>
+      <Text style={styles.label}>{translate.date_of_Birth}</Text>
       <DateUI
         format="DD/MM/YYYY"
-        placeholder={'translate.creation.date_depart'}
+        placeholder={translate.date_of_Birth}
         // date={new Date(`${responseUser[3]}`)}
         setDate={(value) => {
           replaceResponseUser({ ...responseUser, 3: value });
@@ -79,10 +84,10 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
       />
       <Spacer />
 
-      <Text style={styles.label}>Lieu de Naissance</Text>
+      <Text style={styles.label}>{translate.place_of_Birth}</Text>
       <Item rounded style={styles.input}>
         <Input
-          placeholder="Lieu de naissance"
+          placeholder={translate.place_of_Birth}
           value={responseUser[4]}
           onChangeText={(value) => {
             replaceResponseUser({ ...responseUser, 4: value });
@@ -96,40 +101,45 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
           <Radio
             color={Colors.border}
             selectedColor={Colors.brandPrimary}
-            selected={responseUser[5] === 'Homme' ? true : false}
+            selected={responseUser[5] === translate.man ? true : false}
             onPress={() => {
               replaceResponseUser({ ...responseUser, 5: 'Homme' });
             }}
           />
-          <Text style={{ color: Colors.textColor }}>Homme</Text>
+          <Text style={{ color: Colors.textColor }}>{translate.man}</Text>
         </View>
         <View style={{ alignItems: 'center', flexDirection: 'row' }}>
           <Radio
             color={Colors.border}
             selectedColor={Colors.brandPrimary}
-            selected={responseUser[5] === 'Femme' ? true : false}
+            selected={responseUser[5] === translate.woman ? true : false}
             onPress={() => {
               replaceResponseUser({ ...responseUser, 5: 'Femme' });
             }}
           />
-          <Text style={{ color: Colors.textColor }}>Femme</Text>
+          <Text style={{ color: Colors.textColor }}>{translate.woman}</Text>
         </View>
       </View>
       <Spacer />
-      <Text style={styles.label}>Statut matrimonial</Text>
+      <Text style={styles.label}>{translate.marital_status}</Text>
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
-        placeholder={'Statut matrimonial'}
+        placeholder={translate.marital_status}
         label={'name'}
         selectedValue={
-          responseUser[6] === 'Célibataire'
+          responseUser[6] === translate.single
             ? {
-                name: 'Célibataire',
+                name: translate.single,
                 id: 1,
               }
-            : {
-                name: 'Marié',
+            : responseUser[6] === translate.married
+            ? {
+                name: translate.married,
                 id: 2,
+              }
+            : {
+                name: translate.divorced,
+                id: 3,
               }
         }
         options={statusMat}
@@ -139,10 +149,10 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         }}
       />
       <Spacer />
-      <Text style={styles.label}>Situation professionnelle</Text>
+      <Text style={styles.label}>{translate.professional_status}</Text>
       <Item rounded style={styles.input}>
         <Input
-          placeholder="Situation professionnelle"
+          placeholder={translate.professional_status}
           value={responseUser[7]}
           onChangeText={(value) => {
             replaceResponseUser({ ...responseUser, 7: value });
@@ -150,20 +160,19 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         />
       </Item>
       <Spacer />
-      <Text style={styles.label}>Première langue</Text>
+      <Text style={styles.label}>{translate.first_language}</Text>
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
-        placeholder={'Première langue'}
-        label={'name'}
+        placeholder={translate.first_language}
         options={firsLang}
         selectedValue={
-          responseUser[8] === 'Français'
+          responseUser[8] === translate.french
             ? {
-                name: 'Français',
+                name: translate.french,
                 id: 1,
               }
             : {
-                name: 'Anglais',
+                name: translate.english,
                 id: 2,
               }
         }
@@ -184,7 +193,7 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         />
       </Item>
       <Spacer />
-      <Text style={styles.label}>Téléphone</Text>
+      <Text style={styles.label}>{translate.phone}</Text>
       <View
         style={[
           styles.input,

@@ -5,7 +5,7 @@ import { PropTypes } from 'prop-types';
 import DatePicker from 'react-native-date-picker';
 import Colors from '../../../native-base-theme/variables/commonColor';
 import { format_date } from '../../lib/formt-date';
-// import translate from '../../containers/language/language';
+import translate from '../../containers/language/language';
 
 const InputDate = ({ date = new Date(), setDate, format, placeholder = 'translate.select_date '}) => {
   const [isPickerShow, setIsPickerShow] = useState(false);
@@ -34,7 +34,7 @@ const InputDate = ({ date = new Date(), setDate, format, placeholder = 'translat
         open={isPickerShow}
         date={date !== null ? date : new Date()}
         // is24hourSource={'locale'}
-        title={placeholder}
+        title={translate.birth_date}
         fadeToColor="rgba(0, 0, 0, 0.6)"
         textColor={Colors.textColor}
         onConfirm={onChange}
@@ -43,8 +43,8 @@ const InputDate = ({ date = new Date(), setDate, format, placeholder = 'translat
           setIsPickerShow(false);
         }}
         mode="date"
-        confirmText={'translate.confirm'}
-        cancelText={'translate.cancel'}
+        confirmText={translate.confirm}
+        cancelText={translate.cancel}
       />
     </View>
   );

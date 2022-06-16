@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Input, Item, Icon } from 'native-base';
+import Colors from '../../../native-base-theme/variables/commonColor';
 
 const TextInput = ({
   placeholder, onChangeText, color, secure = false, value='', style
@@ -8,11 +9,14 @@ const TextInput = ({
 
   return (
     <Item style={style}>
-      <Icon name='lock-closed' style={{color: '#fc961a'}} />
+      <Icon name='lock-closed' style={{color: Colors.brandPrimary}} />
       <Input
         autoCapitalize="none"
         placeholder={placeholder}
         style={{ color }}
+        // keyboardType="numeric"
+        // keyboardType="date"
+        // keyboardType="phone-pad"
         secureTextEntry={isVisible}
         // keyboardType='email-address'
         defaultValue=""

@@ -57,7 +57,8 @@ const Login = () => {
             <View style={{ marginTop: 20, marginLeft: 10 }}>
               <Text style={{ color: '#fff', fontSize: 25 }}>Bienvenue</Text>
               <Text style={{ color: '#fff' }}>
-                Je suis <Text style={{ fontWeight: 'bold', fontSize: 15 }}>Smart Assit</Text>
+                Je suis{' '}
+                <Text style={{ fontSize: 15, fontFamily: 'Montserrat bold' }}>Smart Assit</Text>
               </Text>
               <View style={{ width: 100, marginTop: 20 }}>
                 <Button
@@ -78,7 +79,7 @@ const Login = () => {
                 />
               </View>
               <View style={{ marginTop: 20 }}>
-                <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Préinscription</Text>
+                <Text style={{ fontFamily: 'Montserrat bold', fontSize: 16 }}>Préinscription</Text>
                 <Text style={{ fontSize: 13, color: '#666' }}>
                   Cliquez pour voir les détails sur les préinscriptions
                 </Text>
@@ -92,7 +93,7 @@ const Login = () => {
                 />
               </View>
               <View style={{ marginTop: 20 }}>
-                <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Orientation</Text>
+                <Text style={{ fontFamily: 'Montserrat bold', fontSize: 16 }}>Orientation</Text>
                 <Text style={{ fontSize: 13, color: '#666' }}>
                   Cliquez pour voir les détails sur les préinscriptions
                 </Text>
@@ -108,7 +109,7 @@ const Login = () => {
                 />
               </View>
               <View style={{ marginTop: 20 }}>
-                <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Parainage</Text>
+                <Text style={{ fontFamily: 'Montserrat bold', fontSize: 16 }}>Parainage</Text>
                 <Text style={{ fontSize: 13, color: '#666' }}>
                   Cliquez pour voir les détails sur les préinscriptions
                 </Text>
@@ -122,7 +123,7 @@ const Login = () => {
                 />
               </View>
               <View style={{ marginTop: 20 }}>
-                <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Forum</Text>
+                <Text style={{ fontFamily: 'Montserrat bold', fontSize: 16 }}>Forum</Text>
                 <Text style={{ fontSize: 13, color: '#666' }}>
                   Cliquez pour voir les détails sur les préinscriptions
                 </Text>

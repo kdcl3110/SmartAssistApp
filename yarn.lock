@@ -5213,6 +5213,11 @@ load-json-file@^4.0.0:
     pify "^3.0.0"
     strip-bom "^3.0.0"
 
+localized-strings@^0.2.0:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/localized-strings/-/localized-strings-0.2.4.tgz#9d61c06b60cc7b5edf7c46e6c7f2d1ecb84aeb2c"
+  integrity sha512-TKDhqFPkIIN/if2FSvVVZTaM/GP9TzfgdQ2uY65mr32xgFu5nqkKXprXbzy5rfx32DF5LDvS/y1UqYF/mAscYA==
+
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/locate-path/-/locate-path-2.0.0.tgz"
@@ -5340,6 +5345,11 @@ lodash.toarray@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
   integrity sha1-JMS/zWsvuji/0FlNsRedjptlZWE=
+
+lodash.wrap@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.wrap/-/lodash.wrap-4.1.1.tgz#9c3770947a821ec6978a93571e1a6179afcd7fc8"
+  integrity sha512-zOvgaTFh+7jBC80FKyoOwMyi8VF3LWAWuakrSXFVTIZAmrJEAYiu7lqwJYDhwh6l5wXuF5aGlzTBymvD+1q6LA==
 
 lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.3.0, lodash@^4.7.0:
   version "4.17.21"
@@ -6618,6 +6628,13 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-localization@^1.0.17:
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/react-localization/-/react-localization-1.0.19.tgz#b65a7fa58096cff6aa38bc3a0c4817ec97469ef0"
+  integrity sha512-f4E6T8xRis19K8qMOnnhjGV2quy1YH2lrSsnAiytvgt7uOSp6WgDhrZH6XZEaEFqupTOCFSf8uagIoIAkjl4JA==
+  dependencies:
+    localized-strings "^0.2.0"
+
 react-native-carrier-info@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/react-native-carrier-info/-/react-native-carrier-info-1.1.2.tgz#4444f7586994acb2f1d78005a2a48635815bae53"
@@ -6654,10 +6671,10 @@ react-native-custom-picker@^0.4.0:
   resolved "https://registry.yarnpkg.com/react-native-custom-picker/-/react-native-custom-picker-0.4.0.tgz#258896b1eae65f95e4122b4bbdf6bfd68a27d0e3"
   integrity sha512-zhpt3pEYo/6xH2F0+G//SCo3Q7QddAS8/Xrrwc8Cif/PfaPU15cEMUakBGyJ/5vAv67RtF74WQcGhfA4RS09xg==
 
-react-native-date-picker@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/react-native-date-picker/-/react-native-date-picker-4.2.1.tgz#36d97c56c651e5b5c848c511585b0c548f90e3b9"
-  integrity sha512-buJkmVkyJIQwqeV1/1YYLVmBj9ah1L9AFJVFad20aObJuyxPSqJZClmuwDjVH1kf9jqXICDHJEH3bbagtr6Hfg==
+react-native-date-picker@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-date-picker/-/react-native-date-picker-4.2.2.tgz#07fb8a9021fb48ef9a20b043d33c14e858220883"
+  integrity sha512-x0jxWbJXKDXivRDwsUx58tKOxe719XoVqqq6UzMSYSsTiPL2i13r7PyDxop3f3et/62qbcMgeswl+/CLdX6+Eg==
 
 react-native-dialogflow@^3.2.2:
   version "3.2.2"
@@ -6707,6 +6724,18 @@ react-native-gifted-chat@^0.16.3:
     react-native-typing-animation "^0.1.7"
     uuid "3.4.0"
 
+react-native-global-font@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-global-font/-/react-native-global-font-1.0.3.tgz#14150a9fff5be9dda0f463b7f12e4a8bc7899885"
+  integrity sha512-yzsFcJhlFn5OAQGuxS/Pa7WBbcOj0H/o2Irve5R5yWcRx4e1k3F3SpZs6F9qfzTKXr9nhjPKtMgMpIQwvbQeVQ==
+  dependencies:
+    lodash.wrap "^4.1.1"
+
+react-native-global-props@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-global-props/-/react-native-global-props-1.1.5.tgz#443e0ffc89d5402fa20ebedf37bcbca6d861c34d"
+  integrity sha512-QDeAdRel6zyJfbgyFxZi9QXZe78OdlANxJae0rJn76uTqdt/A+iWBVjJy3NmaN/fpKy0uV0HhW6Hu4xM0QCisQ==
+
 react-native-indicators@^0.17.0:
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/react-native-indicators/-/react-native-indicators-0.17.0.tgz#92f95efaf5fb53be576dfe4e1980a25655a93f55"
@@ -6739,6 +6768,13 @@ react-native-lightbox@^0.8.1:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-localization@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-localization/-/react-native-localization-2.3.1.tgz#b6752f16d2035bd4671fa5660c82941164e68b94"
+  integrity sha512-jmD6GEAGmstCIZOsxZcxWJbbx364c9qtKy8kefLcHYfAc73+g+e8CB7TZEwpK4IZNXxCBAeQMBsXfFrTyJmpWQ==
+  dependencies:
+    react-localization "^1.0.17"
+
 react-native-pages@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/react-native-pages/-/react-native-pages-0.9.0.tgz#1e673eda2e8b64419e69a3dd6688ba4ca3255689"
@@ -6760,6 +6796,11 @@ react-native-phone-number-input@^2.1.0:
   dependencies:
     google-libphonenumber "^3.2.10"
     react-native-country-picker-modal "^2.0.0"
+
+react-native-popup-menu@^0.15.12:
+  version "0.15.12"
+  resolved "https://registry.yarnpkg.com/react-native-popup-menu/-/react-native-popup-menu-0.15.12.tgz#386852f4245f8d661a5003776989b9b55c9ce381"
+  integrity sha512-33zMqHW+7rt5m2Bgg7xM8jy1guIdUCE8qJfznYYNRlIt4+fJX/rDcwmJIrkSGrvfhlhhEaG3otW6h25uFZLFfg==
 
 react-native-reanimated@^2.2.0:
   version "2.2.0"

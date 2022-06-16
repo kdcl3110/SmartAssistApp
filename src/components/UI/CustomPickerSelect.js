@@ -195,4 +195,4 @@ const mapDispatchToProps = (dispatch) => ({
   // getCountries: dispatch.countries.fetchList,
   // getCurrency: dispatch.countries.getCurrency,
 });
-export default connect(mapStateToProps, mapDispatchToProps)(CustomPickerSelect);
+export default CustomPickerSelect;
