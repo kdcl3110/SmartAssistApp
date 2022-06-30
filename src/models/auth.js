@@ -23,12 +23,59 @@ export default {
       console.log(rootState.auth.language.lang);
       stringsoflanguages.setLanguage(rootState.auth.language.lang);
     },
+
+    async login(data) {
+      try {
+        const response = await Api.post('signin', data);
+        console.log(response.data);
+        // await AsyncStorage.setItem('@Auth:token', response['data']['token']);
+        // dispatch.auth.replaceCurrentUser(response.data.user);
+        // dispatch.auth.replaceIsAuthentificated(true);
+      } catch (error) {
+        Toast.showError(error?.message);
+        // console.log(error);
+      }
+    },
+
+    async register(data) {
+      try {
+        const response = await Api.post('register', data);
+        console.log(response.data);
+        // await AsyncStorage.setItem('@Auth:token', response['data']['token']);
+        // dispatch.auth.replaceCurrentUser(response.data.user);
+        // dispatch.auth.replaceIsAuthentificated(true);
+        return response;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   }),
 
   /**
    * Reducers
    */
   reducers: {
+    /**
+     * Save form data
+     * @param {obj} state
+     * @param {obj} payload
+     */
+    replaceCurrentUser(state, payload) {
+      return {
+        ...state,
+        currentUser: payload,
+      };
+    },
+    /**
+     * Save form data
+     * @param {obj} state
+     * @param {obj} payload
+     */ replaceIsAuthentificated(state, payload) {
+      return {
+        ...state,
+        isAuthentificated: payload,
+      };
+    },
     replaceLanguage(state, payload) {
       return {
         ...state,

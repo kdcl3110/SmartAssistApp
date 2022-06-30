@@ -12,8 +12,8 @@ export default {
 
   // API
   apiBaseUrl: isDevEnv
-    ? 'http://192.168.8.102:8000/api/'
-    : 'http://192.168.8.102:8000/api/',
+    ? 'https://safe-dawn-79771.herokuapp.com/api/'
+    : 'https://safe-dawn-79771.herokuapp.com/api/',
 
   // Google Analytics - uses a 'dev' account while we're testing
   gaTrackingId: isDevEnv ? 'UA-84284256-2' : 'UA-84284256-1',

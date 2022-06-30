@@ -37,8 +37,10 @@ const string = {
     jobless: 'jobless',
     employee: 'employee',
     in_self_employment: 'in self employment',
+    loading: 'Please wait',
   },
   fr: {
+    loading: "Patientez\ns'il vous plaît",
     bigin: 'Tapez "Modules" pour  commencer',
     hello_smart: "Bonjour, je m'appelle \nSmart Assist",
     Choose_your_module: 'Choisissez votre module Parmis les réponses suivantes',

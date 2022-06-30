@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, Image, Dimensions } from 'react-native';
+import { View, Image, Dimensions, Alert, BackHandler } from 'react-native';
 import { Icon } from 'native-base';
 import DatePicker from 'react-native-date-picker';
 import { format_date } from '../../lib/formt-date';
@@ -60,6 +60,25 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
       user: BOT,
     },
   ]);
+
+  const backAction = () => {
+    if (Actions.currentScene === 'Chat') {
+      Alert.alert(translate.warning, translate.quit_app, [
+        {
+          text: translate.cancel,
+          onPress: () => null,
+          style: translate.cancel,
+        },
+        { text: translate.yes, onPress: () => BackHandler.exitApp() },
+      ]);
+      return true;
+    }
+  };
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () => backHandler.remove();
+  }, []);
 
   useEffect(() => {
     // console.log(messages);

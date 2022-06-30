@@ -43,14 +43,15 @@ class App extends React.Component {
     const { loading } = this.state;
     const { store, persistor } = this.props;
 
-    if (loading) {
-      return <Loading />;
-    }
+    // if (loading) {
+    //   return <Loading />;
+    // }
 
     return (
       <Root>
         <MenuProvider>
           <Provider store={store}>
+            <Loading />
             <PersistGate loading={<Loading />} persistor={persistor}>
               <StyleProvider style={getTheme(theme)}>
                 <Init>

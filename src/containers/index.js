@@ -7,3 +7,4 @@ export { default as Register } from './auth/register';
 export { default as Chat } from './chat/chats';
 export { default as Home } from './home/home';
 export { default as Confirmation } from './confirmation/confirmation';
+export {default as Setting} from './profil/setting';

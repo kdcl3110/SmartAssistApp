@@ -140,6 +140,7 @@ const HeaderPage = (props) => {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                   }}
+                  onPress={() => Actions.Setting()}
                 >
                   <Text>Profil</Text>
                   {/* <View style={{ flex: 0.3 }}> */}
@@ -167,7 +168,9 @@ const HeaderPage = (props) => {
       {props.title == 'confirm_infos' && (
         <Body>
           <View style={{ flexDirection: 'row' }}>
-            <Title style={{ color: '#666', paddingLeft: 10 }}>{translate[props.title] ? translate[props.title] : props.title}</Title>
+            <Title style={{ color: '#666', paddingLeft: 10 }}>
+              {translate[props.title] ? translate[props.title] : props.title}
+            </Title>
           </View>
         </Body>
       )}
