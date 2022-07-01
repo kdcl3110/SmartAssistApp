@@ -1,5 +1,5 @@
 //import liraries
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -9,25 +9,16 @@ import {
   Platform,
   TouchableOpacity,
   RefreshControl,
+  Alert,
 } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import {
-  Container,
-  Content,
-  H3,
-  Icon,
-  ListItem,
-  Thumbnail,
-  H1,
-  Tabs,
-  Tab,
-  TabHeading,
-  ScrollableTab,
-} from 'native-base';
+import { Container, H3, Icon, Thumbnail } from 'native-base';
 import { Actions } from 'react-native-router-flux';
 import Colors from '../../../native-base-theme/variables/commonColor';
 import ItemProfil from './items/itemProfil';
 import ModalSetLanguage from './items/modalSetLanguage';
+import ModalUpdateProfil from './items/modalUpdateProfil';
+import translate from '../../containers/language/language';
 
 // create a component
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
@@ -52,10 +43,29 @@ const Setting = () => {
 
   const onRefresh = () => {};
   const [refreshing, setRefreshing] = useState();
+  const [modalLanguageVisible, setModalLanguageVisible] = useState(false);
+
+  const doLogout = () => {
+    Alert.alert(translate.warning, translate.will_disconnect, [
+      {
+        text: translate.cancel,
+        onPress: () => null,
+        style: translate.cancel,
+      },
+      {
+        text: translate.ok,
+        onPress: async () => {},
+      },
+    ]);
+  };
 
   return (
-    <Container style={{ backgroundColor: '#fafafb' }}>
-      <ModalSetLanguage />
+    <Container style={{ backgroundColor: Colors.brandPrimary }}>
+      <ModalSetLanguage
+        modalVisible={modalLanguageVisible}
+        setModalVisible={setModalLanguageVisible}
+      />
+      {/* <ModalUpdateProfil modalVisible={true} /> */}
       <Animated.View style={{ position: 'absolute', width: '100%', zIndex: 1 }}>
         <View
           style={{
@@ -75,11 +85,11 @@ const Setting = () => {
             <Icon
               name="arrow-back-outline"
               type="Ionicons"
-              style={{ fontSize: 25, color: Colors.brandPrimary }}
+              style={{ fontSize: 25, color: '#fff' }}
             />
           </TouchableOpacity>
           <View>
-            <Text style={{ fontSize: 20 }}>Profile</Text>
+            <Text style={{ fontSize: 20, color: '#fff' }}>{translate.settings}</Text>
           </View>
         </View>
       </Animated.View>
@@ -102,6 +112,7 @@ const Setting = () => {
             style={{
               padding: 10,
               marginTop: HEADER_HEIGHT - getStatusBarHeight() + 15,
+              height: Dimensions.get('window').height / 3,
             }}
           >
             <View
@@ -116,32 +127,9 @@ const Setting = () => {
                   large
                 />
               </TouchableOpacity>
-              <View style={{ alignItems: 'center' }}>
-                <H3>KDCL koudichrilo</H3>
-                <Text style={{ color: '#666' }}>diepeloic31@gmail.com</Text>
-              </View>
-              <View
-                style={{
-                  height: 30,
-                  borderWidth: 1,
-                  marginVertical: 20,
-                  width: '90%',
-                  borderColor: Colors.inputBorderColor,
-                  borderRadius: 10,
-                }}
-              >
-                <View
-                  style={{
-                    width: '50%',
-                    height: '100%',
-                    borderRadius: 10,
-                    backgroundColor: Colors.brandPrimary,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Text style={{ color: '#fff' }}>50%</Text>
-                </View>
+              <View style={{ alignItems: 'center', marginBottom: 60 }}>
+                <H3 style={{ color: '#fff' }}>KDCL koudichrilo</H3>
+                <Text style={{ color: '#fff' }}>diepeloic31@gmail.com</Text>
               </View>
             </View>
           </Animated.View>
@@ -152,12 +140,23 @@ const Setting = () => {
             borderTopRightRadius: 50,
             borderTopLeftRadius: 50,
             paddingTop: 20,
+            height: (Dimensions.get('window').height * 2) / 3,
           }}
         >
-          <ItemProfil iconLeft={'user-alt'} label={'Mon profil'} type="FontAwesome5" />
-          <ItemProfil iconLeft={'globe-outline'} label={'Langue par défaut'} lang />
-          <ItemProfil iconLeft={'settings'} label={'Plus de parametres'} />
-          <ItemProfil iconLeft={'clipboard-outline'} label={'Imprimer ma fiche'} />
+          <ItemProfil
+            iconLeft={'user-alt'}
+            label={translate.my_profile}
+            type="FontAwesome5"
+            onPress={() => Actions.UpdateProfil()}
+          />
+          <ItemProfil
+            iconLeft={'globe-outline'}
+            label={translate.default_language}
+            lang
+            onPress={() => setModalLanguageVisible(true)}
+          />
+          <ItemProfil iconLeft={'settings'} label={translate.more_settings} />
+          <ItemProfil iconLeft={'clipboard-outline'} label={translate.print_my_form} />
           <View
             style={{
               height: 1,
@@ -166,8 +165,8 @@ const Setting = () => {
               marginVertical: 10,
             }}
           />
-          <ItemProfil iconLeft={'help-outline'} label={'A propos de SmartAssit'} />
-          <ItemProfil iconLeft={'exit'} label="Déconnexion" />
+          <ItemProfil iconLeft={'help-outline'} label={translate.about_SmartAssit} />
+          <ItemProfil iconLeft={'exit'} label={translate.logout} onPress={doLogout} />
         </Animated.View>
       </Animated.ScrollView>
     </Container>

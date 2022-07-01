@@ -3,10 +3,12 @@ import { Icon } from 'native-base';
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { connect } from 'react-redux';
 import Colors from '../../../../native-base-theme/variables/commonColor';
+import translate from '../../../containers/language/language';
 
 // create a component
-const ItemProfil = ({ iconLeft, label, type = 'Ionicons', onPress, lang }) => {
+const ItemProfil = ({ iconLeft, label, type = 'Ionicons', onPress, lang, language }) => {
   return (
     <TouchableOpacity
       style={{
@@ -34,7 +36,11 @@ const ItemProfil = ({ iconLeft, label, type = 'Ionicons', onPress, lang }) => {
       </View>
       <View style={{ flex: 0.6 }}>
         <Text>{label}</Text>
-        {lang && <Text style={{ fontSize: 12, color: '#666' }}>francais</Text>}
+        {lang && (
+          <Text style={{ fontSize: 12, color: '#666' }}>
+            {language.lang == 'fr' ? translate.french : translate.english}
+          </Text>
+        )}
       </View>
       <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
         <Icon name="chevron-forward-outline" style={{ fontSize: 25, color: Colors.brandPrimary }} />
@@ -44,4 +50,9 @@ const ItemProfil = ({ iconLeft, label, type = 'Ionicons', onPress, lang }) => {
 };
 
 //make this component available to the app
-export default ItemProfil;
+const mapStateToProps = (state) => ({
+  language: state.auth.language,
+});
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ItemProfil);

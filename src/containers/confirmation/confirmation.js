@@ -69,7 +69,7 @@ const Confirmation = ({ responseUser, replaceResponseUser, printPdf, createEtatC
             <Icon name="arrow-forward" />
           </Fab>
         </View>
-        {/* <View style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
           <Confirm2 />
           <Fab
             position="bottomRight"
@@ -110,17 +110,7 @@ const Confirmation = ({ responseUser, replaceResponseUser, printPdf, createEtatC
         </View>
         <View style={{ flex: 1 }}>
           <Confirm5 />
-          <Fab
-            position="bottomRight"
-            style={{ backgroundColor: Colors.brandPrimary }}
-            onPress={() => {
-              pages.current.scrollToPage(5);
-              Actions.addRef('confirm_infos', pages.current);
-            }}
-          >
-            <Icon name="arrow-forward" />
-          </Fab>
-        </View> */}
+        </View>
       </Pages>
     </Container>
   );

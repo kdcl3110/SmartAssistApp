@@ -11,6 +11,7 @@ const string = {
     yes: 'Yes',
     warning: 'Warning',
     quit_app: 'Are you sure you want to quit the app?',
+    ok: 'Okay',
   },
   fr: {
     password_min: 'le mot de passe doit avoir au moins 6 caractères',
@@ -24,6 +25,7 @@ const string = {
     yes: 'Oui',
     warning: 'Attention',
     quit_app: "Etes-vous sur de vouloir quitter l'application?",
+    ok: "D'accord",
   },
 };
 

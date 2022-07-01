@@ -23,7 +23,9 @@ const HeaderPage = (props) => {
   return (
     <Header
       style={
-        props.title == 'confirm_infos' || props.routeName == 'Notification'
+        props.title == 'confirm_infos' ||
+        props.routeName == 'Notification' ||
+        props.routeName == 'UpdateProfil'
           ? { backgroundColor: 'white' }
           : props.navigationBarStyle
       }
@@ -46,18 +48,6 @@ const HeaderPage = (props) => {
               }}
             />
           </TouchableOpacity>
-          {/* {props.routeName == 'Chat' ? (
-          <ImageZoom
-            img={[props?.picture]}
-            styles={{
-              height: 45,
-              width: 45,
-              borderRadius: 100,
-              overflow: 'hidden',
-              marginRight: 5,
-            }}
-          />
-        ) : null} */}
         </Left>
       )}
       {props.title == 'Smart Assist' && (
@@ -73,10 +63,23 @@ const HeaderPage = (props) => {
           </View>
         </Body>
       )}
+      {props.routeName == 'UpdateProfil' && (
+        <View style={{ flexDirection: 'row', marginLeft: 0, height: '100%', alignItems: 'center' }}>
+          <Title style={{ color: '#666' }}>{props.title}</Title>
+        </View>
+      )}
+
+      {props.routeName == 'UpdateProfil' && (
+        <Right>
+          <TouchableOpacity onPress={() => Actions.pop()}>
+            <Icon name="close" style={{ color: commonColor.brandPrimary }} />
+          </TouchableOpacity>
+        </Right>
+      )}
 
       {props.title == 'Smart Assist' && (
         <Right>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => Actions.Setting()}>
             <Icon
               type="MaterialIcons"
               name="settings"
@@ -87,7 +90,7 @@ const HeaderPage = (props) => {
               }}
             />
           </TouchableOpacity>
-          <Menu
+          {/* <Menu
             rendererProps={{
               placement: 'bottom',
               padding: 10,
@@ -143,9 +146,7 @@ const HeaderPage = (props) => {
                   onPress={() => Actions.Setting()}
                 >
                   <Text>Profil</Text>
-                  {/* <View style={{ flex: 0.3 }}> */}
                   <Icon name="person-circle-outline" />
-                  {/* </View> */}
                 </TouchableOpacity>
               </MenuOption>
               <MenuOption value={3}>
@@ -161,7 +162,7 @@ const HeaderPage = (props) => {
                 </TouchableOpacity>
               </MenuOption>
             </MenuOptions>
-          </Menu>
+          </Menu> */}
         </Right>
       )}
 
@@ -174,56 +175,15 @@ const HeaderPage = (props) => {
           </View>
         </Body>
       )}
-
-      {/* {props.previous && (
-      <View style={{ flex: 1, justifyContent: 'center', marginLeft: -25 }}>
-        <Text
-          style={{
-            color: props.routeName == 'Notification' ? commonColor.textColor : 'white',
-            fontFamily: 'AppleSDGothicNeo-SemiBold',
-            paddingLeft: 15,
-            fontSize: 20,
-          }}
-          adjustsFontSizeToFit
-          numberOfLines={1}
-        >
-          {props.routeName == 'DetailOffre'
-            ? `${'translate.offre'} ${props.travel.code}`
-            : 'translate[props.title]' || props.title || props.name}
-        </Text>
-      </View>
-    )} */}
-      {/* {!props.previous && props.title !== 'profil' && (
-      <Body>
-        <Image
-          resizeMode="contain"
-          source={require('../../assets/images/marylis.png')}
-          style={{ height: 42, width: 120, marginRight: 65 }}
-        />
-      </Body>
-    )} */}
-      {}
     </Header>
   );
 };
 const mapStateToProps = (state) => ({
-  // affiliers: state.affiliers.affiliers || [],
-  // listSearch: state.affiliers.listSearch || [],
-  // search: state.affiliers.search,
   currentUser: state.auth.currentUser,
   language: state.auth.language,
-  // currencies: state.countries.currencies,
-  // tourGuides: state.auth.tourGuides,
-  // isLoading: state.loading.global,
 });
 const mapDispatchToProps = (dispatch) => ({
   replaceLanguage: dispatch.auth.replaceLanguage,
-  //   replaceSearch: dispatch.affiliers.replaceSearch,
-  //   replaceListSearch: dispatch.affiliers.replaceListSearch,
-  //   replaceCurrency: dispatch.auth.replaceCurrency,
-  //   replaceLaunchTuto: dispatch.auth.replaceLaunchTuto,
-  //   replaceTourGuides: dispatch.auth.replaceTourGuides,
-  //   updateUser: dispatch.auth.updateUser,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderPage);

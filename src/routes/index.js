@@ -16,8 +16,10 @@ import {
   Home,
   Confirmation,
   Setting,
+  Register
 } from '../containers';
-import Register from '../containers/screens/Register';
+// import Register from '../containers/screens/Register';
+import UpdateProfil from '../components/profil/items/modalUpdateProfil';
 
 const TabIcon = ({ focused, name, style }) => (
   <Icon
@@ -45,8 +47,6 @@ const SettingsTab = ({ focused, style, label, iconName }) => {
       {focused ? (
         <Text
           style={{ fontSize: 10, color: Colors.brandPrimary }}
-          // adjustsFontSizeToFit={label === translate.affiliate}
-          // numberOfLines={1}
         >
           {label}
         </Text>
@@ -63,56 +63,20 @@ const Index = (
         swipeEnabled
         type="replace"
         tabBarComponent={CustomTabComponet}
-        // tabBarPosition="top"
-        // tabBarComponent={props => (
-        //   <AnimatedTabBar tabs={tabs} {...props} />)
-        // }
         showLabel={false}
         {...DefaultProps.tabProps}
       >
         <Stack
           key="home"
           title="Home"
-          // icon={({ focused }) => (
-          //   <SettingsTab focused={focused} {...DefaultProps.icons} label="Home" iconName="home" />
-          // )}
           {...DefaultProps.navbarProps}
           navigationBarStyle={{ backgroundColor: Colors.brandPrimary }}
         >
           {/* <Scene key="home" component={Home} hideNavBar /> */}
           <Scene key="Chat" component={Chat} title="Smart Assist" hideTabBar />
-          <Scene key="Confirmation" title={'confirm_infos'} component={Confirmation} hideTabBar />
-          <Scene key="Setting" title={'confirm_infos'} component={Setting} hideTabBar hideNavBar />
-        </Stack>
-
-        <Stack
-          key="forum"
-          title="Articles List"
-          // icon={({ focused }) => (
-          //   <SettingsTab focused={focused} {...DefaultProps.icons} label="Forum" iconName="chat" />
-          // )}
-          {...DefaultProps.navbarProps}
-        >
-          <Scene key="articlesList" component={ArticlesList} />
-          <Scene key="articlesSingle" component={ArticlesSingle} back />
-        </Stack>
-
-        <Stack
-          key="profil"
-          title="Articles Form"
-          // icon={({ focused }) => (
-          //   <SettingsTab
-          //     focused={focused}
-          //     {...DefaultProps.icons}
-          //     label="Profil"
-          //     iconName="person"
-          //   />
-          // )}
-          {...DefaultProps.navbarProps}
-        >
-          <Scene key="Login" component={Login} />
-          <Scene key="Register" component={Register} />
-          <Scene key="form" component={ArticlesForm} />
+          <Scene key="Confirmation" title={'Confirmation'} component={Confirmation} hideTabBar />
+          <Scene key="Setting" component={Setting} hideTabBar hideNavBar />
+          <Scene key="UpdateProfil" title={"Modifier mes informations"} component={UpdateProfil} hideTabBar />
         </Stack>
       </Tabs>
     </Scene>

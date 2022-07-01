@@ -12,9 +12,9 @@ import styles from './styles';
 import { Spacer } from '../UI';
 import CustomPickerSelect from '../UI/CustomPickerSelect';
 import DateUI from '../UI/InputDate';
-
+import translate from '../../containers/language/language';
 // create a component
-const Confirmation1 = () => {
+const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
   const statusMat = [
     {
       name: 'celibataire',
@@ -38,11 +38,11 @@ const Confirmation1 = () => {
   ];
 
   return (
-    <Content style={{ paddingHorizontal: 10, backgroundColor: '#f4f7fd' }} padder>
-      <Text style={styles.label}>Nationalité</Text>
+    <Content style={{ paddingHorizontal: 10 }} padder>
+      <Text style={styles.label}>{translate.nationality}</Text>
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
-        placeholder={'Nationalité'}
+        placeholder={translate.nationality}
         label={'name'}
         options={statusMat}
         // selectedValue={travelInput?.toTown}
@@ -54,54 +54,54 @@ const Confirmation1 = () => {
         <Input placeholder="Login" />
       </Item>
       <Spacer /> */}
-      <Text style={styles.label}>Region d'origine</Text>
+      <Text style={styles.label}>{translate.region_of_origin}</Text>
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
-        placeholder={"Region d'origine"}
+        placeholder={translate.region_of_origin}
         label={'name'}
         options={firsLang}
         // selectedValue={travelInput?.toTown}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
-      <Text style={styles.label}>Département d'Origine</Text>
+      <Text style={styles.label}>{translate.department_of_Origin}</Text>
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
-        placeholder={"Département d'Origine"}
+        placeholder={translate.department_of_Origin}
         label={'name'}
         options={firsLang}
         // selectedValue={travelInput?.toTown}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
-      <Text style={styles.label}>Nom du père</Text>
+      <Text style={styles.label}>{translate.fathers_name}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder="Nom du père" />
+        <Input placeholder={translate.fathers_name} />
       </Item>
       <Spacer />
-      <Text style={styles.label}>Profession du Père</Text>
+      <Text style={styles.label}>{translate.profession_father}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder="Profession du Père" />
-      </Item>
-      <Spacer />
-
-      <Text style={styles.label}>Nom de la Mère</Text>
-      <Item rounded style={styles.input}>
-        <Input placeholder="Nom de la Mère" />
+        <Input placeholder={translate.profession_father} />
       </Item>
       <Spacer />
 
-      <Text style={styles.label}>Profession de la Mère </Text>
+      <Text style={styles.label}>{translate.mothers_name}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder="Profession de la Mère" />
+        <Input placeholder={translate.mothers_name} />
+      </Item>
+      <Spacer />
+
+      <Text style={styles.label}>{translate.mothers_profession}</Text>
+      <Item rounded style={styles.input}>
+        <Input placeholder={translate.mothers_profession} />
       </Item>
       <Spacer />
       <View style={{ alignItems: 'center' }}>
-        <H3>Personne à contacter</H3>
+        <H3>{translate.contact_person}</H3>
       </View>
       <Spacer />
       <Item rounded style={styles.input}>
-        <Input placeholder="Nom" />
+        <Input placeholder={translate.last_name} />
       </Item>
       <Spacer size={10} />
       <View

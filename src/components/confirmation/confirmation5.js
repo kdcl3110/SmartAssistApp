@@ -1,20 +1,17 @@
 //import liraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { Container, Content, H1, H2, H3, Icon, Input, Item, Radio } from 'native-base';
-// import { Spacer } from '../UI';
-import TextInput from '../UI/TextInput';
+import React from 'react';
+import { View, Text} from 'react-native';
+import { Content, H3, Input, Item} from 'native-base';
 import Colors from '../../../native-base-theme/variables/commonColor';
-import PhoneInput from '../UI/PhoneInput';
-import Button from '../UI/Button';
 import { Actions } from 'react-native-router-flux';
 import styles from './styles';
 import { Spacer } from '../UI';
+import ButtonUI from '../UI/ButtonUI';
 import CustomPickerSelect from '../UI/CustomPickerSelect';
-import DateUI from '../UI/InputDate';
+import translate from '../../containers/language/language';
 
 // create a component
-const Confirmation1 = () => {
+const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
   const statusMat = [
     {
       name: 'celibataire',
@@ -38,20 +35,20 @@ const Confirmation1 = () => {
   ];
 
   return (
-    <Content style={{ paddingHorizontal: 10, backgroundColor: '#f4f7fd' }} padder>
+    <Content style={{ paddingHorizontal: 10}} padder>
       <View style={{ alignItems: 'center' }}>
-        <H3>Infos de paiement</H3>
+        <H3>{translate.payment_Info}</H3>
       </View>
       <Spacer />
-      <Text style={styles.label}>N° Transaction </Text>
+      <Text style={styles.label}>{translate.transaction_number}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder="N° Transaction " />
+        <Input placeholder={translate.transaction_number} />
       </Item>
       <Spacer />
-      <Text style={styles.label}>Agence de Paiement</Text>
+      <Text style={styles.label}>{translate.payment_Agency}</Text>
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
-        placeholder={'Agence de Paiement'}
+        placeholder={translate.payment_Agency}
         label={'name'}
         options={firsLang}
         // selectedValue={travelInput?.toTown}
@@ -59,7 +56,7 @@ const Confirmation1 = () => {
       />
       <Spacer />
       <View style={{ alignItems: 'center' }}>
-        <H3>Informations Diverses</H3>
+        <H3>{translate.various_information}</H3>
       </View>
       <Spacer />
       <Text style={styles.label}>Pratique Sport</Text>
@@ -72,16 +69,17 @@ const Confirmation1 = () => {
         <Input placeholder="Pratique Art " />
       </Item>
       <Spacer />
-      <Text style={styles.label}>Numéro du certificat médical</Text>
+      <Text style={styles.label}>{translate.medical_certificate_number}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder="Numéro du certificat médical" />
+        <Input placeholder={translate.medical_certificate_number} />
       </Item>
       <Spacer />
-      <Text style={styles.label}>Lieu du certificat médical </Text>
+      <Text style={styles.label}>{translate.place_medical_certificate} </Text>
       <Item rounded style={styles.input}>
-        <Input placeholder="Lieu du certificat médical " />
+        <Input placeholder={translate.place_medical_certificate}  />
       </Item>
       <Spacer />
+      <ButtonUI title={translate.print} onPress={submit} />
     </Content>
   );
 };

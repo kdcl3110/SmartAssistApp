@@ -3,6 +3,7 @@ import { SafeAreaView, StyleSheet, View, StatusBar, TouchableOpacity, Text } fro
 import PhoneInput from 'react-native-phone-number-input';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import CarrierInfo from 'react-native-carrier-info';
+import translate from '../../containers/language/language';
 // import translate from '../../containers/language/language';r
 import commonColor from '../../../native-base-theme/variables/commonColor';
 
@@ -33,7 +34,7 @@ const App = ({ onChangeText, value = '', onChangeValid, color = 'black' }) => {
         onChangeFormattedText={(text) => {
           onChangeText(text);
         }}
-        placeholder={'translate.phone_number'}
+        placeholder={translate.phone_number}
         containerStyle={{ backgroundColor: 'transparent', alignItems: 'center' }}
         // textInputStyle={{ color, marginHorizontal: -10 }}
         // textContainerStyle={{ backgroundColor: 'transparent', marginHorizontal: -10 }}

@@ -1,21 +1,55 @@
 //import liraries
 import { Icon } from 'native-base';
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Modal } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import React, { Component, useState } from 'react';
+import { View, Text, StyleSheet, Modal, Alert, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import { connect } from 'react-redux';
 import { CheckBox } from 'native-base';
 import Colors from '../../../../native-base-theme/variables/commonColor';
+import translate from '../../../containers/language/language';
 
 // create a component
-const ModalSetLanguage = () => {
+const ModalSetLanguage = ({
+  replaceLanguage,
+  setLanguage,
+  language,
+  modalVisible,
+  setModalVisible,
+}) => {
+  const [langue, setLangue] = useState(language);
+
+  const changeLanguage = (val) => {
+    Alert.alert(translate.warning, translate.change_your_language, [
+      {
+        text: translate.cancel,
+        onPress: () => null,
+        style: translate.cancel,
+      },
+      {
+        text: translate.yes,
+        onPress: async () => {
+          if (val) {
+            translate.setLanguage(val.lang);
+            await replaceLanguage(val);
+            await AsyncStorage.setItem('@Lang:locale', val.lang);
+            await setLanguage();
+            setLangue({ ...val });
+          }
+        },
+      },
+    ]);
+  };
+
+  // }}
+
   return (
     <Modal
       transparent
       animationType="slide"
       presentationStyle="overFullScreen"
-      visible
+      visible={modalVisible}
       style={{ backgroundColor: '#fff' }}
-      onRequestClose={() => {}}
+      onRequestClose={() => setModalVisible(false)}
     >
       <View
         style={{
@@ -47,19 +81,29 @@ const ModalSetLanguage = () => {
               justifyContent: 'space-between',
             }}
           >
-            <Text>Changez de langue</Text>
-            <TouchableOpacity>
+            <Text>{translate.change_language}</Text>
+            <TouchableOpacity onPress={() => setModalVisible(false)}>
               <Icon name="close" style={{ color: Colors.brandPrimary }} />
             </TouchableOpacity>
           </View>
           <View>
-            <View style={{ flexDirection: 'row', marginVertical: 5 }}>
-              <CheckBox checked={false} color={Colors.brandPrimary} />
-              <Text>francais</Text>
+            <View style={{ flexDirection: 'row', marginVertical: 10 }}>
+              <CheckBox
+                checked={language.lang == 'fr' ? true : false}
+                color={Colors.brandPrimary}
+                style={{ marginRight: 20 }}
+                onPress={() => changeLanguage({ name: translate.french, lang: 'fr', id: 1 })}
+              />
+              <Text>{translate.french}</Text>
             </View>
-            <View style={{ flexDirection: 'row', marginVertical: 5 }}>
-              <CheckBox checked={false} color={Colors.brandPrimary} />
-              <Text>Anglais</Text>
+            <View style={{ flexDirection: 'row', marginVertical: 10 }}>
+              <CheckBox
+                checked={language.lang == 'en' ? true : false}
+                color={Colors.brandPrimary}
+                style={{ marginRight: 20 }}
+                onPress={() => changeLanguage({ name: translate.english, lang: 'en', id: 2 })}
+              />
+              <Text>{translate.english}</Text>
             </View>
           </View>
         </View>
@@ -69,4 +113,12 @@ const ModalSetLanguage = () => {
 };
 
 //make this component available to the app
-export default ModalSetLanguage;
+const mapStateToProps = (state) => ({
+  currentUser: state.auth.currentUser,
+  language: state.auth.language,
+});
+const mapDispatchToProps = (dispatch) => ({
+  replaceLanguage: dispatch.auth.replaceLanguage,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalSetLanguage);

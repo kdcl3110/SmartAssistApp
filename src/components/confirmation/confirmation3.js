@@ -12,9 +12,10 @@ import styles from './styles';
 import { Spacer } from '../UI';
 import CustomPickerSelect from '../UI/CustomPickerSelect';
 import DateUI from '../UI/InputDate';
+import translate from '../../containers/language/language';
 
 // create a component
-const Confirmation1 = () => {
+const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
   const statusMat = [
     {
       name: 'celibataire',
@@ -38,11 +39,11 @@ const Confirmation1 = () => {
   ];
 
   return (
-    <Content style={{ paddingHorizontal: 10, backgroundColor: '#f4f7fd' }} padder>
-      <Text style={styles.label}>Filère</Text>
+    <Content style={{ paddingHorizontal: 10}} padder>
+      <Text style={styles.label}>{translate.branch}</Text>
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
-        placeholder={'1er Choix'}
+        placeholder={translate.first_Choice}
         label={'name'}
         options={statusMat}
         // selectedValue={travelInput?.toTown}
@@ -52,7 +53,7 @@ const Confirmation1 = () => {
       {/* <Text style={styles.label}>Département d'Origine</Text> */}
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
-        placeholder={'2ème Choix'}
+        placeholder={translate.sec_Choice}
         label={'name'}
         options={firsLang}
         // selectedValue={travelInput?.toTown}
@@ -62,26 +63,26 @@ const Confirmation1 = () => {
       {/* <Text style={styles.label}>Département d'Origine</Text> */}
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
-        placeholder={'3ème Choix'}
+        placeholder={translate.third_choice}
         label={'name'}
         options={firsLang}
         // selectedValue={travelInput?.toTown}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
-      <Text style={styles.label}>Niveau</Text>
+      <Text style={styles.label}>{translate.level}</Text>
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
-        placeholder={'Niveau'}
+        placeholder={translate.level}
         label={'name'}
         options={firsLang}
         // selectedValue={travelInput?.toTown}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
-      <Text style={styles.label}>Statut</Text>
+      <Text style={styles.label}>{translate.status}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder="Statut" />
+        <Input placeholder={translate.status} />
       </Item>
       <Spacer />
     </Content>

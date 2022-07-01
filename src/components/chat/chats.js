@@ -197,11 +197,95 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
       setkeyboardType('email-address');
     } else if (text === '11- Entrez votre numéro de CNI' || text === '11- Enter your CNI number') {
       setkeyboardType('numeric');
+    } else if (text === '13- où avez vous effectué votre paiement') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['express union', 'sgc', 'yup']),
+      };
+    } else if (text === '15- Quel est votre nationalité ?') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies([
+          'Cameroun',
+          'Congo',
+          'Gabon',
+          'Guinée-équatorial',
+          'Ngeria',
+          'Républic centrafricaine',
+          'Tchad',
+          'Autre',
+        ]),
+      };
+    } else if (text === "16- Région d'origine") {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies([
+          'etrangé',
+          'centre',
+          'adamaoua',
+          'est',
+          'extreme-nord',
+          'littoral',
+          'nord',
+          'nord-ouest',
+          'ouest',
+          'sud',
+          'sud-ouest',
+        ]),
+      };
+    } else if (text === "17- Département d'origine") {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies([
+          'Etrangé',
+          'Mbam-et-inoubou',
+          'Haute-sanaga',
+          'Lekié',
+          'Mbam-et-kim',
+          'Méfou-et-afamba',
+          'Méfou-et-akono',
+          'Mfoundi',
+          'Nyong-et-kéllé',
+          'Nyong-et-mfoumou',
+          "Nyong-et-so'o",
+        ]),
+      };
     } else if (text === '5- Quel est votre sexe?' || text === '5- What is your gender?') {
       msg.quickReplies = {
         type: 'radio',
         keepIt: true,
         values: showQuickReplies([translate.man, translate.woman]),
+      };
+    } else if (
+      text ===
+      "😅 restez encore devant votre écran nous n'avons pas encore terminé.\nCliquez si dessous pour continuer"
+    ) {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['Informations de paiement et de filiation']),
+      };
+    } else if (
+      text ===
+      "🙃 prenez patience j'ai encore quelques questions à vous posez pour mener à bien votre préinscription. \nCliquez si dessous pour continuer"
+    ) {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['faculté et études souhaitées']),
+      };
+    } else if (
+      text ===
+      '😁😁 plus que quelques questions et nous avons terminé.\nCliquez si dessous pour continuer'
+    ) {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['diplômes présentés']),
       };
     } else if (
       text === '6- quel est votre statut matrimonial ?' ||
@@ -379,22 +463,13 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
       {...props}
       timeTextStyle={{
         right: { color: 'white' },
-        // left: { color: 'white' },
       }}
-      textStyle={
-        {
-          // left: { color: 'white' },
-        }
-      }
       wrapperStyle={{
-        // left: {backgroundColor: 'white'},
-        // left: { backgroundColor: 'rgba(180,189,199, 0.3)' },
         right: { backgroundColor: Colors.brandPrimary },
       }}
     />
   );
   const renderInputToolbar = (props) => {
-    // console.log(props);
     return (
       <View
         style={{
@@ -415,9 +490,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
           textInputProps={{
             keyboardType: keyboardType,
           }}
-          // renderAccessory={() => <Text>jbhgfui</Text>}
           containerStyle={{
-            // backgroundColor: 'rgba(180,189,199, 0.3)',
             flex: 0.8,
             marginHorizontal: isDate ? null : 15,
             elevation: 4,
@@ -509,7 +582,6 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
             width: Dimensions.get('window').width / 1.2,
             height: Dimensions.get('window').width / 1.2 - 60,
           }}
-          // resizeMode="center"
         />
       </View>
       <GiftedChat
@@ -521,15 +593,12 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
         infiniteScroll
         onInputTextChanged={setCurrentValue}
         text={currentValue}
-        // textInputStyle={{ borderBottomWidth: 3, paddingBottom: 5, borderBottomColor: Colors.brandPrimary }}
         renderUsernameOnMessage
         minComposerHeight={25}
         renderSend={renderSend}
         renderBubble={renderBubble}
         renderInputToolbar={renderInputToolbar}
         render
-        // renderFooter= {() => ( <Text>vfnjvkg</Text>)}
-        // alwaysShowSend
       />
     </View>
   );

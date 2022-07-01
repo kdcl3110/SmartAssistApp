@@ -226,8 +226,8 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
           }}
         />
       </Item>
-      <Spacer />
-      <ButtonUI title={'imprimer'} onPress={submit} />
+      {/* <Spacer />
+      <ButtonUI title={'imprimer'} onPress={submit} /> */}
     </Content>
   );
 };

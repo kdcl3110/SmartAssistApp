@@ -12,9 +12,10 @@ import styles from './styles';
 import { Spacer } from '../UI';
 import CustomPickerSelect from '../UI/CustomPickerSelect';
 import DateUI from '../UI/InputDate';
+import translate from '../../containers/language/language';
 
 // create a component
-const Confirmation1 = () => {
+const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
   const statusMat = [
     {
       name: 'celibataire',
@@ -38,38 +39,38 @@ const Confirmation1 = () => {
   ];
 
   return (
-    <Content style={{ paddingHorizontal: 10, backgroundColor: '#f4f7fd' }} padder>
-      <Text style={styles.label}>Type Diplôme: </Text>
+    <Content style={{ paddingHorizontal: 10 }} padder>
+      <Text style={styles.label}>{translate.type_of_diploma} </Text>
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
-        placeholder={'Type Diplôme'}
+        placeholder={translate.type_of_diploma}
         label={'name'}
         options={statusMat}
         // selectedValue={travelInput?.toTown}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
-      <Text style={styles.label}>Série</Text>
+      <Text style={styles.label}>{translate.serie}</Text>
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
-        placeholder={'Série'}
+        placeholder={translate.serie}
         label={'name'}
         options={firsLang}
         // selectedValue={travelInput?.toTown}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
-      <Text style={styles.label}>Année d'obtention </Text>
+      <Text style={styles.label}>{translate.year_of_graduation}</Text>
       <DateUI
         format="DD/MM/YYYY"
-        placeholder={"Année d'obtention"}
+        placeholder={translate.year_of_graduation}
         date={null}
         setDate={(val) => replaceTravelInput({ ...travelInput, dateDepart: val })}
       />
       <Spacer />
-      <Text style={styles.label}>Moyenne </Text>
+      <Text style={styles.label}>{translate.average}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder="Moyenne " />
+        <Input placeholder={translate.average} />
       </Item>
       <Spacer />
 
@@ -84,15 +85,15 @@ const Confirmation1 = () => {
       />
       <Spacer />
 
-      <Text style={styles.label}>Diplôme délivré par </Text>
+      <Text style={styles.label}>{translate.diploma_issued_by} </Text>
       <Item rounded style={styles.input}>
-        <Input placeholder="Diplôme délivré par " />
+        <Input placeholder={translate.diploma_issued_by} />
       </Item>
       <Spacer />
-      <Text style={styles.label}>Date de délivrance </Text>
+      <Text style={styles.label}>{translate.date_of_issue}</Text>
       <DateUI
         format="DD/MM/YYYY"
-        placeholder={'Date de délivrance'}
+        placeholder={translate.date_of_issue}
         date={null}
         setDate={(val) => replaceTravelInput({ ...travelInput, dateDepart: val })}
       />
