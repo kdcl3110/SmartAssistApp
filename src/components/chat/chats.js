@@ -5,25 +5,12 @@ import DatePicker from 'react-native-date-picker';
 import { format_date } from '../../lib/formt-date';
 import { GiftedChat, InputToolbar, Bubble, Send } from 'react-native-gifted-chat';
 import { Actions } from 'react-native-router-flux';
-// import { Bubbles, DoubleBounce, Bars, Pulse } from 'react-native-loader';
-import {
-  BallIndicator,
-  BarIndicator,
-  DotIndicator,
-  MaterialIndicator,
-  PacmanIndicator,
-  PulseIndicator,
-  SkypeIndicator,
-  UIActivityIndicator,
-  WaveIndicator,
-} from 'react-native-indicators';
+import { DotIndicator } from 'react-native-indicators';
 import { Dialogflow_V2 } from 'react-native-dialogflow';
-import { Loading } from '../UI';
 import ModalUI from './modalFinish';
 import translate from '../../containers/language/language';
 import Colors from '../../../native-base-theme/variables/commonColor';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-// import {dialogflowConfig} from './env';
 
 const botAvatar = require('../../assets/images/smart.png');
 
@@ -182,12 +169,14 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
       };
     } else if (
       text === '10- Quel est votre numéro de téléphone ?' ||
-      text === '10- What is your phone number?'
+      text === '10- What is your phone number?' ||
+      text === "23- Numéro de téléphone du contact d'urgence"
     ) {
       setkeyboardType('phone-pad');
     } else if (
       text === '3- quel est votre date de naissance (jj/mm/aaaa) ?' ||
-      text === '3- what is your date of birth (dd/mm/yyyy)?'
+      text === '3- what is your date of birth (dd/mm/yyyy)?' ||
+      text === '37- date de délivrance du diplôme ?'
     ) {
       setIsDate(true);
     } else if (
@@ -195,7 +184,12 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
       text === '9- What is your email address?'
     ) {
       setkeyboardType('email-address');
-    } else if (text === '11- Entrez votre numéro de CNI' || text === '11- Enter your CNI number') {
+    } else if (
+      text === '11- Entrez votre numéro de CNI' ||
+      text === '11- Enter your CNI number' ||
+      text === '34- Quel moyenne avez vous obtenue ?' ||
+      text === '33- En quel année avez vous obtenu votre diplôme (ex: 2010)'
+    ) {
       setkeyboardType('numeric');
     } else if (text === '13- où avez vous effectué votre paiement') {
       msg.quickReplies = {
@@ -254,6 +248,144 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
           "Nyong-et-so'o",
         ]),
       };
+    } else if (text === '25- Choisissez votre faculté') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies([
+          'Faculté des Sciences (FS)',
+          'Faculté des Arts, Lettres et Sciences Humaines (FALSH)',
+          "Faculté des Sciences de l'Education (FSE)",
+          'Institut Universitaire de Technologies du Bois de Mbalmayo (IUT Bois)',
+        ]),
+      };
+    } else if (text === '30- Quel est votre statut') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['Etudiant camerounais', 'Etudiant étrangé']),
+      };
+    } else if (text === '36- Emetteur du diplôme') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['OBC', 'GCE Board']),
+      };
+    } else if (text === '35- Quel mention avez vous eu ?') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies([
+          'passable',
+          'assez bien',
+          'bien',
+          'très bien',
+          'excellent',
+          // 'passed',
+        ]),
+      };
+    } else if (text === '32- Quel est votre série ?') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies([
+          'A',
+          'B',
+          'C',
+          'D',
+          'E',
+          'F1',
+          'F2',
+          'F3',
+          'F4',
+          'F5',
+          'F6',
+          'F7',
+          'F8',
+          'TI',
+          'MEB',
+          'IB',
+          'CB',
+          'CHB',
+          'SPB',
+        ]),
+      };
+    } else if (text === '31- Quel est le nom de votre diplôme ?') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies([
+          'BACC CAMEROUNAI',
+          'BACC ETRANGER',
+          'GCE A LEVEL',
+          'GCE O LEVEL',
+          'DEUG',
+          'DUT',
+          'LICENCE',
+          'LICENCE PROFESSIONEL',
+          'LICENCE EN SCRIENCE BIOMEDICALS',
+          'MASTER 1',
+          'MASTER 2',
+          'DIPES 1',
+          'CSCT',
+          'RELEVE DE NOTE',
+          "DIPLOME D'ETAT D'INFIRMIER",
+          'DOCTORAT',
+          'DOCTORAT EN MEDECINE OU EN PHARMACIE',
+          'PROBATOIRE',
+        ]),
+      };
+    } else if (
+      text === '27- premier choix de filière' ||
+      text === '28- deuxième choix de filière' ||
+      text === '29- troisième choix de filière'
+    ) {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies([
+          'INFORMATIQUE',
+          'BIOCHIMIE',
+          'BIOLOGIE ANIMALE',
+          'BIOLOGIE VEGETALE',
+          'CHIMIE',
+          'MATHEMATIQUES',
+          'PHYSIQUE',
+          'SCIENCES DE LA TERRE ET DE L UNIVERS',
+          'MICROBIOLOGIE',
+          'BIOSCIENCES',
+          'GEOSCIENCES',
+          'ICT for DEVELOPMENT',
+          'CHIMIE INORGANIQUE',
+          'CHIMIE ORGANIQUE',
+          'Master Pro - Réseaux et Applications Multimédia (RAM)',
+          'Master Pro - Systèmes d’information et Génie Logiciel (SIGL)',
+          'Master Pro - Sécurité des Systèmes Informatiques (SSI)',
+          'Licence Pro. - Information and Communication Technology for Development (ICT4D)',
+          'Master Pro - Sciences de l’Environnement',
+          'Master Pro - Sciences Forestières -Audit et Certification des Forets',
+          'Master Pro - Sciences Forestières -Aires Protégées',
+          'Master Pro - Sciences Forestières -Agroforesterie',
+          'Master Pro - Industrie des Semences',
+          'Master Pro - Mines, Pétrole et Métallurgie',
+          'Master Pro - Ingénierie Géotechnique',
+          'Master Pro Régional - MAREMA',
+          'Master Pro - Sécurité Sanitaire des Aliments',
+          'Master Pro - Biotechnologie de la Santé Publique',
+        ]),
+      };
+    } else if (text === '26- Quel niveau souhaitez vous intégrer ?') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['L1', 'L2', 'L3', 'M1']),
+      };
+    } else if (text === '26- Quel niveau souhaitez vous intégrer ?') {
+      msg.quickReplies = {
+        type: 'radio',
+        keepIt: true,
+        values: showQuickReplies(['L1', 'L2', 'L3', 'M1']),
+      };
     } else if (text === '5- Quel est votre sexe?' || text === '5- What is your gender?') {
       msg.quickReplies = {
         type: 'radio',
@@ -262,7 +394,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
       };
     } else if (
       text ===
-      "😅 restez encore devant votre écran nous n'avons pas encore terminé.\nCliquez si dessous pour continuer"
+      "😅 restez encore devant votre écran nous n'avons pas encore terminé.\\n\\nCliquez si dessous pour continuer"
     ) {
       msg.quickReplies = {
         type: 'radio',
@@ -271,7 +403,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
       };
     } else if (
       text ===
-      "🙃 prenez patience j'ai encore quelques questions à vous posez pour mener à bien votre préinscription. \nCliquez si dessous pour continuer"
+      "🙃 prenez patience j'ai encore quelques questions à vous posez pour mener à bien votre préinscription. \\n\\nCliquez si dessous pour continuer"
     ) {
       msg.quickReplies = {
         type: 'radio',
@@ -280,7 +412,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
       };
     } else if (
       text ===
-      '😁😁 plus que quelques questions et nous avons terminé.\nCliquez si dessous pour continuer'
+      '😁😁 plus que quelques questions et nous avons terminé.\\n\\nCliquez si dessous pour continuer'
     ) {
       msg.quickReplies = {
         type: 'radio',
