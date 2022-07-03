@@ -35,8 +35,12 @@ const string = {
     medical_certificate_number: 'Medical certificate number',
     place_medical_certificate: 'Place of the medical certificate',
     print: 'print',
+    gender: 'Gender',
+    faculty: 'Faculty',
   },
   fr: {
+    faculty: 'Faculté',
+    gender: 'Sexe',
     print: 'imprimer',
     place_medical_certificate: 'Lieu du certificat médical',
     medical_certificate_number: 'Numéro du certificat médical',

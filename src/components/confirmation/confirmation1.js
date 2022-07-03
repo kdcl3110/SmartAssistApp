@@ -19,29 +19,14 @@ import translate from '../../containers/language/language';
 // create a component
 const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
   const statusMat = [
-    {
-      name: translate.single,
-      id: 1,
-    },
-    {
-      name: translate.married,
-      id: 2,
-    },
-    {
-      name: translate.divorced,
-      id: 2,
-    },
+    { name: translate.single, id: 1 },
+    { name: translate.married, id: 2 },
+    { name: translate.divorced, id: 2 },
   ];
 
   const firsLang = [
-    {
-      name: translate.french,
-      id: 1,
-    },
-    {
-      name: translate.english,
-      id: 2,
-    },
+    { name: translate.french, id: 1 },
+    { name: translate.english, id: 2 },
   ];
 
   useEffect(() => {
@@ -95,7 +80,7 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         />
       </Item>
       <Spacer />
-      <Text style={styles.label}>Sexe</Text>
+      <Text style={styles.label}>{translate.gender}</Text>
       <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginVertical: 0 }}>
         <View style={{ alignItems: 'center', flexDirection: 'row' }}>
           <Radio
@@ -207,7 +192,6 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
           value={responseUser[10]}
           onChangeText={(value) => {
             replaceResponseUser({ ...responseUser, 10: value });
-            // setValue('phone', value);
           }}
           onChangeValid={(value) => {
             // setValue('phoneValid', value)
@@ -217,7 +201,6 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
       <Spacer />
       <Text style={styles.label}>N° CNI</Text>
       <Item rounded style={styles.input}>
-        {/* <Icon name="mail" style={{ color: Colors.brandPrimary }} /> */}
         <Input
           placeholder="111111111"
           value={responseUser[11]}

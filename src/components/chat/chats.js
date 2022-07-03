@@ -80,7 +80,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
         responseUser[e.text.split('-')[0]] = values[i - 1].text;
         console.log(responseUser);
       }
-      if (e.text.split(':')[0] == 'récapitulatif' || e.text.split(':')[0] == 'summary') {
+      if (e.text == 'fin de la preinscription' || e.text.split(':')[0] == 'summary') {
         setVisible(true);
         // Actions.Confirmation();
         return;
@@ -281,7 +281,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
           'bien',
           'très bien',
           'excellent',
-          // 'passed',
+          'parfait',
         ]),
       };
     } else if (text === '32- Quel est votre série ?') {
@@ -380,13 +380,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
         keepIt: true,
         values: showQuickReplies(['L1', 'L2', 'L3', 'M1']),
       };
-    } else if (text === '26- Quel niveau souhaitez vous intégrer ?') {
-      msg.quickReplies = {
-        type: 'radio',
-        keepIt: true,
-        values: showQuickReplies(['L1', 'L2', 'L3', 'M1']),
-      };
-    } else if (text === '5- Quel est votre sexe?' || text === '5- What is your gender?') {
+    }  else if (text === '5- Quel est votre sexe?' || text === '5- What is your gender?') {
       msg.quickReplies = {
         type: 'radio',
         keepIt: true,

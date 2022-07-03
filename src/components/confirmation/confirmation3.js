@@ -16,37 +16,89 @@ import translate from '../../containers/language/language';
 
 // create a component
 const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
-  const statusMat = [
-    {
-      name: 'celibataire',
-      id: 1,
-    },
-    {
-      name: 'marié',
-      id: 2,
-    },
+
+  const getSelect = (nationality = [], response) => {
+    let value;
+    nationality.forEach((e, i) => {
+      if (e.name === response) {
+        return (value = e);
+      }
+    });
+    return value;
+  };
+
+  const faculty = [
+    { id: 1, name: 'Faculté des Sciences (FS)' },
+    { id: 2, name: 'Faculté des Arts, Lettres et Sciences Humaines (FALSH)' },
+    { id: 3, name: "Faculté des Sciences de l'Education (FSE)" },
+    { id: 4, name: 'Institut Universitaire de Technologies du Bois de Mbalmayo (IUT Bois)' },
   ];
 
-  const firsLang = [
+  const filiere = [
+    { id: 1, name: 'INFORMATIQUE' },
+    { id: 2, name: 'BIOCHIMIE' },
+    { id: 3, name: 'BIOLOGIE ANIMALE' },
+    { id: 4, name: 'BIOLOGIE VEGETALE' },
+    { id: 5, name: 'CHIMIE' },
+    { id: 6, name: 'MATHEMATIQUES' },
+    { id: 7, name: 'PHYSIQUE' },
+    { id: 8, name: 'SCIENCES DE LA TERRE ET DE L UNIVERS' },
+    { id: 9, name: 'MICROBIOLOGIE' },
+    { id: 10, name: 'BIOSCIENCES' },
+    { id: 11, name: 'GEOSCIENCES' },
+    { id: 12, name: 'ICT for DEVELOPMENT' },
+    { id: 13, name: 'CHIMIE INORGANIQUE' },
+    { id: 14, name: 'CHIMIE ORGANIQUE' },
+    { id: 15, name: 'Master Pro - Réseaux et Applications Multimédia (RAM)' },
+    { id: 16, name: 'Master Pro - Systèmes d’information et Génie Logiciel (SIGL)' },
+    { id: 17, name: 'Master Pro - Sécurité des Systèmes Informatiques (SSI)' },
     {
-      name: 'celibataire',
-      id: 1,
+      id: 18,
+      name: 'Licence Pro. - Information and Communication Technology for Development (ICT4D)',
     },
-    {
-      name: 'marié',
-      id: 2,
-    },
+    { id: 19, name: 'Master Pro - Sciences de l’Environnement' },
+    { id: 20, name: 'Master Pro - Sciences Forestières -Audit et Certification des Forets' },
+    { id: 21, name: 'Master Pro - Sciences Forestières -Aires Protégées' },
+    { id: 22, name: 'Master Pro - Sciences Forestières -Agroforesterie' },
+    { id: 23, name: 'Master Pro - Industrie des Semences' },
+    { id: 24, name: 'Master Pro - Mines, Pétrole et Métallurgie' },
+    { id: 25, name: 'Master Pro - Ingénierie Géotechnique' },
+    { id: 26, name: 'Master Pro Régional - MAREMA' },
+    { id: 27, name: 'Master Pro - Sécurité Sanitaire des Aliments' },
+    { id: 28, name: 'Master Pro - Biotechnologie de la Santé Publique' },
+  ];
+
+  const level = [
+    { id: 1, name: 'L1' },
+    { id: 2, name: 'L2' },
+    { id: 3, name: 'L3' },
+    { id: 4, name: 'M1' },
+  ];
+
+  const status = [
+    { id: 1, name: 'Etudiant camerounais' },
+    { id: 2, name: 'Etudiant étrangé' },
   ];
 
   return (
-    <Content style={{ paddingHorizontal: 10}} padder>
+    <Content style={{ paddingHorizontal: 10 }} padder>
+      <Text style={styles.label}>{translate.faculty}</Text>
+      <CustomPickerSelect
+        style={{ flex: 1, marginHorizontal: 2, height: 40 }}
+        placeholder={translate.faculty}
+        label={'name'}
+        options={faculty}
+        selectedValue={getSelect(faculty, responseUser[1])}
+        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+      />
+      <Spacer size={10} />
       <Text style={styles.label}>{translate.branch}</Text>
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
         placeholder={translate.first_Choice}
         label={'name'}
-        options={statusMat}
-        // selectedValue={travelInput?.toTown}
+        options={filiere}
+        selectedValue={getSelect(filiere, responseUser[1])}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer size={10} />
@@ -55,8 +107,8 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
         placeholder={translate.sec_Choice}
         label={'name'}
-        options={firsLang}
-        // selectedValue={travelInput?.toTown}
+        options={filiere}
+        selectedValue={getSelect(filiere, responseUser[1])}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer size={10} />
@@ -65,8 +117,8 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
         placeholder={translate.third_choice}
         label={'name'}
-        options={firsLang}
-        // selectedValue={travelInput?.toTown}
+        options={filiere}
+        selectedValue={getSelect(filiere, responseUser[1])}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
@@ -75,15 +127,20 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
         placeholder={translate.level}
         label={'name'}
-        options={firsLang}
-        // selectedValue={travelInput?.toTown}
+        options={level}
+        selectedValue={getSelect(level, responseUser[1])}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
       <Text style={styles.label}>{translate.status}</Text>
-      <Item rounded style={styles.input}>
-        <Input placeholder={translate.status} />
-      </Item>
+      <CustomPickerSelect
+        style={{ flex: 1, marginHorizontal: 2, height: 40 }}
+        placeholder={translate.status}
+        label={'name'}
+        options={status}
+        selectedValue={getSelect(status, responseUser[1])}
+        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+      />
       <Spacer />
     </Content>
   );

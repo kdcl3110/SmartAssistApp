@@ -16,26 +16,67 @@ import translate from '../../containers/language/language';
 
 // create a component
 const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
-  const statusMat = [
-    {
-      name: 'celibataire',
-      id: 1,
-    },
-    {
-      name: 'marié',
-      id: 2,
-    },
+
+  const getSelect = (nationality = [], response) => {
+    let value;
+    nationality.forEach((e, i) => {
+      if (e.name === response) {
+        return (value = e);
+      }
+    });
+    return value;
+  };
+
+  const diplome = [
+    { id: 1, name: 'BACC CAMEROUNAI' },
+    { id: 2, name: 'BACC ETRANGER' },
+    { id: 3, name: 'GCE A LEVEL' },
+    { id: 4, name: 'GCE O LEVEL' },
+    { id: 5, name: 'DEUG' },
+    { id: 6, name: 'DUT' },
+    { id: 7, name: 'LICENCE' },
+    { id: 8, name: 'LICENCE PROFESSIONEL' },
+    { id: 9, name: 'LICENCE EN SCRIENCE BIOMEDICALS' },
+    { id: 10, name: 'MASTER 1' },
+    { id: 11, name: 'MASTER 2' },
+    { id: 12, name: 'DIPES 1' },
+    { id: 13, name: 'CSCT' },
+    { id: 14, name: 'RELEVE DE NOTE' },
+    { id: 15, name: "DIPLOME D'ETAT D'INFIRMIER" },
+    { id: 16, name: 'DOCTORAT' },
+    { id: 17, name: 'DOCTORAT EN MEDECINE OU EN PHARMACIE' },
+    { id: 18, name: 'PROBATOIRE' },
   ];
 
-  const firsLang = [
-    {
-      name: 'celibataire',
-      id: 1,
-    },
-    {
-      name: 'marié',
-      id: 2,
-    },
+  const serie = [
+    { id: 1, name: 'A' },
+    { id: 2, name: 'B' },
+    { id: 3, name: 'C' },
+    { id: 4, name: 'D' },
+    { id: 5, name: 'E' },
+    { id: 6, name: 'F1' },
+    { id: 7, name: 'F2' },
+    { id: 8, name: 'F3' },
+    { id: 9, name: 'F4' },
+    { id: 10, name: 'F5' },
+    { id: 11, name: 'F6' },
+    { id: 12, name: 'F7' },
+    { id: 13, name: 'F8' },
+    { id: 14, name: 'TI' },
+    { id: 15, name: 'MEB' },
+    { id: 16, name: 'IB' },
+    { id: 17, name: 'CB' },
+    { id: 18, name: 'CHB' },
+    { id: 19, name: 'SPB' },
+  ];
+
+  const mention = [
+    { id: 1, name: 'passable' },
+    { id: 2, name: 'assez bien' },
+    { id: 3, name: 'bien' },
+    { id: 4, name: 'très bien' },
+    { id: 5, name: 'excellent' },
+    { id: 6, name: 'parfait' },
   ];
 
   return (
@@ -45,8 +86,8 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
         placeholder={translate.type_of_diploma}
         label={'name'}
-        options={statusMat}
-        // selectedValue={travelInput?.toTown}
+        options={diplome}
+        selectedValue={getSelect(diplome, responseUser[1])}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
@@ -55,8 +96,8 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
         placeholder={translate.serie}
         label={'name'}
-        options={firsLang}
-        // selectedValue={travelInput?.toTown}
+        options={serie}
+        selectedValue={getSelect(serie, responseUser[1])}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
@@ -79,8 +120,8 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
         placeholder={'Mention'}
         label={'name'}
-        options={firsLang}
-        // selectedValue={travelInput?.toTown}
+        options={mention}
+        selectedValue={getSelect(mention, responseUser[1])}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />

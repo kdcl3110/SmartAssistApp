@@ -15,26 +15,53 @@ import DateUI from '../UI/InputDate';
 import translate from '../../containers/language/language';
 // create a component
 const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
-  const statusMat = [
-    {
-      name: 'celibataire',
-      id: 1,
-    },
-    {
-      name: 'marié',
-      id: 2,
-    },
+  const getSelect = (nationality = [], response) => {
+    let value;
+    nationality.forEach((e, i) => {
+      if (e.name === response) {
+        return (value = e);
+      }
+    });
+    return value;
+  };
+  
+  const nationality = [
+    { id: 1, name: 'Cameroun' },
+    { id: 2, name: 'Congo' },
+    { id: 3, name: 'Gabon' },
+    { id: 4, name: 'Guinée-équatorial' },
+    { id: 5, name: 'Républic centrafricaine' },
+    { id: 6, name: 'Ngeria' },
+    { id: 7, name: 'Tchad' },
+    { id: 8, name: 'Autre' },
   ];
 
-  const firsLang = [
-    {
-      name: 'celibataire',
-      id: 1,
-    },
-    {
-      name: 'marié',
-      id: 2,
-    },
+  const region = [
+    { id: 1, name: 'etrangé' },
+    { id: 2, name: 'centre' },
+    { id: 3, name: 'adamaoua' },
+    { id: 4, name: 'est' },
+    { id: 5, name: 'extreme-nord' },
+    { id: 6, name: 'littoral' },
+    { id: 7, name: 'nord' },
+    { id: 8, name: 'nord-ouest' },
+    { id: 9, name: 'ouest' },
+    { id: 10, name: 'sud' },
+    { id: 11, name: 'sud-ouest' },
+  ];
+
+  const departement = [
+    { id: 1, name: 'Etrangé' },
+    { id: 2, name: 'Mbam-et-inoubou' },
+    { id: 3, name: 'Haute-sanaga' },
+    { id: 4, name: 'Lekié' },
+    { id: 5, name: 'Mbam-et-kim' },
+    { id: 6, name: 'Méfou-et-afamba' },
+    { id: 7, name: 'Méfou-et-akono' },
+    { id: 8, name: 'Mfoundi' },
+    { id: 9, name: 'Nyong-et-kéllé' },
+    { id: 10, name: 'Nyong-et-mfoumou' },
+    { id: 11, name: "Nyong-et-so'o" },
   ];
 
   return (
@@ -44,23 +71,18 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
         placeholder={translate.nationality}
         label={'name'}
-        options={statusMat}
-        // selectedValue={travelInput?.toTown}
+        options={nationality}
+        selectedValue={getSelect(nationality, responseUser[1])}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
-      {/* <Text style={styles.label}>Situation professionnelle</Text>
-      <Item rounded style={styles.input}>
-        <Input placeholder="Login" />
-      </Item>
-      <Spacer /> */}
       <Text style={styles.label}>{translate.region_of_origin}</Text>
       <CustomPickerSelect
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
         placeholder={translate.region_of_origin}
         label={'name'}
-        options={firsLang}
-        // selectedValue={travelInput?.toTown}
+        options={region}
+        selectedValue={getSelect(region, responseUser[1])}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
@@ -69,8 +91,8 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
         placeholder={translate.department_of_Origin}
         label={'name'}
-        options={firsLang}
-        // selectedValue={travelInput?.toTown}
+        options={departement}
+        selectedValue={getSelect(departement, responseUser[1])}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />

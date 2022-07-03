@@ -1,7 +1,7 @@
 //import liraries
 import React from 'react';
-import { View, Text} from 'react-native';
-import { Content, H3, Input, Item} from 'native-base';
+import { View, Text } from 'react-native';
+import { Content, H3, Input, Item } from 'native-base';
 import Colors from '../../../native-base-theme/variables/commonColor';
 import { Actions } from 'react-native-router-flux';
 import styles from './styles';
@@ -12,30 +12,25 @@ import translate from '../../containers/language/language';
 
 // create a component
 const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
-  const statusMat = [
-    {
-      name: 'celibataire',
-      id: 1,
-    },
-    {
-      name: 'marié',
-      id: 2,
-    },
-  ];
 
-  const firsLang = [
-    {
-      name: 'celibataire',
-      id: 1,
-    },
-    {
-      name: 'marié',
-      id: 2,
-    },
+  const getSelect = (nationality = [], response) => {
+    let value;
+    nationality.forEach((e, i) => {
+      if (e.name === response) {
+        return (value = e);
+      }
+    });
+    return value;
+  };
+
+  const agence = [
+    { id: 1, name: 'express union' },
+    { id: 2, name: 'sgc' },
+    { id: 3, name: 'yup' },
   ];
 
   return (
-    <Content style={{ paddingHorizontal: 10}} padder>
+    <Content style={{ paddingHorizontal: 10 }} padder>
       <View style={{ alignItems: 'center' }}>
         <H3>{translate.payment_Info}</H3>
       </View>
@@ -50,8 +45,8 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         style={{ flex: 1, marginHorizontal: 2, height: 40 }}
         placeholder={translate.payment_Agency}
         label={'name'}
-        options={firsLang}
-        // selectedValue={travelInput?.toTown}
+        options={agence}
+        selectedValue={getSelect(agence, responseUser[1])}
         onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
@@ -76,7 +71,7 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
       <Spacer />
       <Text style={styles.label}>{translate.place_medical_certificate} </Text>
       <Item rounded style={styles.input}>
-        <Input placeholder={translate.place_medical_certificate}  />
+        <Input placeholder={translate.place_medical_certificate} />
       </Item>
       <Spacer />
       <ButtonUI title={translate.print} onPress={submit} />

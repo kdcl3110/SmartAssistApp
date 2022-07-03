@@ -23,7 +23,7 @@ const HeaderPage = (props) => {
   return (
     <Header
       style={
-        props.title == 'confirm_infos' ||
+        props.routeName == 'Confirmation' ||
         props.routeName == 'Notification' ||
         props.routeName == 'UpdateProfil'
           ? { backgroundColor: 'white' }
@@ -42,7 +42,7 @@ const HeaderPage = (props) => {
                 padding: 10,
                 paddingLeft: 5,
                 color:
-                  props.title == 'confirm_infos' || props.routeName == 'Notification'
+                  props.routeName == 'Confirmation' || props.routeName == 'Notification'
                     ? commonColor.brandPrimary
                     : 'white',
               }}
@@ -166,14 +166,14 @@ const HeaderPage = (props) => {
         </Right>
       )}
 
-      {props.title == 'confirm_infos' && (
+      {props.routeName == 'Confirmation' && (
         <Body>
           <View style={{ flexDirection: 'row' }}>
             <Title style={{ color: '#666', paddingLeft: 10 }}>
               {translate[props.title] ? translate[props.title] : props.title}
             </Title>
           </View>
-        </Body>
+        </Body>&
       )}
     </Header>
   );
