@@ -80,7 +80,7 @@ const App = ({ replacelocalMessages, replaceResponseUser }) => {
         responseUser[e.text.split('-')[0]] = values[i - 1].text;
         console.log(responseUser);
       }
-      if (e.text == 'fin de la preinscription' || e.text.split(':')[0] == 'summary') {
+      if (e.text == 'fin de la préinscription\n' || e.text.split(':')[0] == 'summary') {
         setVisible(true);
         // Actions.Confirmation();
         return;

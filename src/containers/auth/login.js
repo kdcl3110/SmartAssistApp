@@ -6,7 +6,7 @@ import Layout from '../../components/auth/login';
 import * as Toast from '../../components/UI/Toast';
 
 // create a component
-const Login = ({ doLogin }) => {
+const Login = ({ doLogin, replaceLanguage, language }) => {
   const signin = async (data) => {
     try {
       const response = await doLogin(data);
@@ -19,12 +19,13 @@ const Login = ({ doLogin }) => {
       Toast.showError('Identifiants incorrect');
     }
   };
-  return <Layout signin={signin} />;
+  return <Layout signin={signin} replaceLanguage={replaceLanguage} language={language} />;
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({ language: state.auth.language });
 
 const mapDispatchToProps = (dispatch) => ({
+  replaceLanguage: dispatch.auth.replaceLanguage,
   doLogin: dispatch.auth.login,
 });
 

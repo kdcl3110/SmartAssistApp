@@ -16,7 +16,6 @@ import translate from '../../containers/language/language';
 
 // create a component
 const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
-
   const getSelect = (nationality = [], response) => {
     let value;
     nationality.forEach((e, i) => {
@@ -87,8 +86,10 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={translate.type_of_diploma}
         label={'name'}
         options={diplome}
-        selectedValue={getSelect(diplome, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(diplome, responseUser[31])}
+        onValueChange={(value) => {
+          replaceResponseUser({ ...responseUser, 31: value });
+        }}
       />
       <Spacer />
       <Text style={styles.label}>{translate.serie}</Text>
@@ -97,8 +98,10 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={translate.serie}
         label={'name'}
         options={serie}
-        selectedValue={getSelect(serie, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(serie, responseUser[32])}
+        onValueChange={(value) => {
+          replaceResponseUser({ ...responseUser, 32: value });
+        }}
       />
       <Spacer />
       <Text style={styles.label}>{translate.year_of_graduation}</Text>
@@ -106,12 +109,18 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         format="DD/MM/YYYY"
         placeholder={translate.year_of_graduation}
         date={null}
-        setDate={(val) => replaceTravelInput({ ...travelInput, dateDepart: val })}
+        setDate={(val) => replaceResponseUser({ ...responseUser, 33: val })}
       />
       <Spacer />
       <Text style={styles.label}>{translate.average}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder={translate.average} />
+        <Input
+          placeholder={translate.average}
+          value={responseUser[34]}
+          onChangeText={(value) => {
+            replaceResponseUser({ ...responseUser, 34: value });
+          }}
+        />
       </Item>
       <Spacer />
 
@@ -121,14 +130,22 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={'Mention'}
         label={'name'}
         options={mention}
-        selectedValue={getSelect(mention, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(mention, responseUser[35])}
+        onValueChange={(value) => {
+          replaceResponseUser({ ...responseUser, 35: value });
+        }}
       />
       <Spacer />
 
       <Text style={styles.label}>{translate.diploma_issued_by} </Text>
       <Item rounded style={styles.input}>
-        <Input placeholder={translate.diploma_issued_by} />
+        <Input
+          placeholder={translate.diploma_issued_by}
+          value={responseUser[36]}
+          onChangeText={(value) => {
+            replaceResponseUser({ ...responseUser, 36: value });
+          }}
+        />
       </Item>
       <Spacer />
       <Text style={styles.label}>{translate.date_of_issue}</Text>
@@ -136,7 +153,7 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         format="DD/MM/YYYY"
         placeholder={translate.date_of_issue}
         date={null}
-        setDate={(val) => replaceTravelInput({ ...travelInput, dateDepart: val })}
+        setDate={(val) => replaceResponseUser({ ...responseUser, 37: val })}
       />
       <Spacer />
     </Content>

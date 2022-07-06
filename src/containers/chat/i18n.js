@@ -38,8 +38,16 @@ const string = {
     employee: 'employee',
     in_self_employment: 'in self employment',
     loading: 'Please wait',
+    finish_preregister:
+      'You have just completed your pre-registration click here to verify your information',
+    congratulation: 'Congratulation !!!',
+    check_your_information: 'Check your information',
   },
   fr: {
+    check_your_information: 'Vérifiez vos informations',
+    congratulation: 'Félicitation !!!',
+    finish_preregister:
+      'Vous vennez de terminer votre pré-inscription clique ici pour vérifier vos informations',
     loading: "Patientez\ns'il vous plaît",
     bigin: 'Tapez "Modules" pour  commencer',
     hello_smart: "Bonjour, je m'appelle \nSmart Assist",

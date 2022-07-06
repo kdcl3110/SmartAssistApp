@@ -73,7 +73,7 @@ const Index = (
           navigationBarStyle={{ backgroundColor: Colors.brandPrimary }}
         >
           {/* <Scene key="home" component={Home} hideNavBar /> */}
-          {/* <Scene key="Chat" component={Chat} title="Smart Assist" hideTabBar /> */}
+          <Scene key="Chat" component={Chat} title="Smart Assist" hideTabBar />
           <Scene key="Confirmation" title={'Confirmation'} component={Confirmation} hideTabBar />
           <Scene key="Setting" component={Setting} hideTabBar hideNavBar />
           <Scene key="UpdateProfil" title={"Modifier mes informations"} component={UpdateProfil} hideTabBar />

@@ -24,7 +24,7 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
     });
     return value;
   };
-  
+
   const nationality = [
     { id: 1, name: 'Cameroun' },
     { id: 2, name: 'Congo' },
@@ -72,8 +72,11 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={translate.nationality}
         label={'name'}
         options={nationality}
-        selectedValue={getSelect(nationality, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(nationality, responseUser[15])}
+        onValueChange={(value) => {
+          replaceResponseUser({ ...responseUser, 15: value });
+        }}
+        // onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
       <Text style={styles.label}>{translate.region_of_origin}</Text>
@@ -82,8 +85,11 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={translate.region_of_origin}
         label={'name'}
         options={region}
-        selectedValue={getSelect(region, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(region, responseUser[16])}
+        onValueChange={(value) => {
+          replaceResponseUser({ ...responseUser, 16: value });
+        }}
+        // onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
       <Text style={styles.label}>{translate.department_of_Origin}</Text>
@@ -92,30 +98,57 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={translate.department_of_Origin}
         label={'name'}
         options={departement}
-        selectedValue={getSelect(departement, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(departement, responseUser[17])}
+        onValueChange={(value) => {
+          replaceResponseUser({ ...responseUser, 17: value });
+        }}
+        // onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
       />
       <Spacer />
       <Text style={styles.label}>{translate.fathers_name}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder={translate.fathers_name} />
+        <Input
+          placeholder={translate.fathers_name}
+          value={responseUser[18]}
+          onChangeText={(value) => {
+            replaceResponseUser({ ...responseUser, 18: value });
+          }}
+        />
       </Item>
       <Spacer />
       <Text style={styles.label}>{translate.profession_father}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder={translate.profession_father} />
+        <Input
+          placeholder={translate.profession_father}
+          value={responseUser[19]}
+          onChangeText={(value) => {
+            replaceResponseUser({ ...responseUser, 19: value });
+          }}
+        />
       </Item>
       <Spacer />
 
       <Text style={styles.label}>{translate.mothers_name}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder={translate.mothers_name} />
+        <Input
+          placeholder={translate.mothers_name}
+          value={responseUser[20]}
+          onChangeText={(value) => {
+            replaceResponseUser({ ...responseUser, 20: value });
+          }}
+        />
       </Item>
       <Spacer />
 
       <Text style={styles.label}>{translate.mothers_profession}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder={translate.mothers_profession} />
+        <Input
+          placeholder={translate.mothers_profession}
+          value={responseUser[21]}
+          onChangeText={(value) => {
+            replaceResponseUser({ ...responseUser, 21: value });
+          }}
+        />
       </Item>
       <Spacer />
       <View style={{ alignItems: 'center' }}>
@@ -123,7 +156,13 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
       </View>
       <Spacer />
       <Item rounded style={styles.input}>
-        <Input placeholder={translate.last_name} />
+        <Input
+          placeholder={translate.last_name}
+          value={responseUser[22]}
+          onChangeText={(value) => {
+            replaceResponseUser({ ...responseUser, 22: value });
+          }}
+        />
       </Item>
       <Spacer size={10} />
       <View
@@ -136,13 +175,16 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         ]}
       >
         <PhoneInput
-          onChangeText={(value) => setValue('phone', value)}
-          onChangeValid={(value) => setValue('phoneValid', value)}
+          onChangeText={(value) => replaceResponseUser({ ...responseUser, 23: value })}
+          onChangeValid={(value) => {
+            // setValue('phoneValid', value);
+          }}
+          value={responseUser[23]}
         />
       </View>
       <Spacer size={10} />
       <Item rounded style={styles.input}>
-        <Input placeholder="Ville" />
+        <Input placeholder="Ville" value={responseUser[24]} />
       </Item>
       <Spacer />
     </Content>

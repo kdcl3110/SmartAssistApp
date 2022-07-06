@@ -12,7 +12,6 @@ import translate from '../../containers/language/language';
 
 // create a component
 const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
-
   const getSelect = (nationality = [], response) => {
     let value;
     nationality.forEach((e, i) => {
@@ -37,7 +36,14 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
       <Spacer />
       <Text style={styles.label}>{translate.transaction_number}</Text>
       <Item rounded style={styles.input}>
-        <Input placeholder={translate.transaction_number} />
+        <Input
+          placeholder={translate.transaction_number}
+          keyboardType="numeric"
+          value={responseUser[14]}
+          onChangeText={(value) => {
+            replaceResponseUser({ ...responseUser, 14: value });
+          }}
+        />
       </Item>
       <Spacer />
       <Text style={styles.label}>{translate.payment_Agency}</Text>
@@ -46,11 +52,11 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={translate.payment_Agency}
         label={'name'}
         options={agence}
-        selectedValue={getSelect(agence, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(agence, responseUser[13])}
+        onValueChange={(val) => replaceResponseUser({ ...responseUser, 14: val })}
       />
       <Spacer />
-      <View style={{ alignItems: 'center' }}>
+      {/* <View style={{ alignItems: 'center' }}>
         <H3>{translate.various_information}</H3>
       </View>
       <Spacer />
@@ -73,8 +79,9 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
       <Item rounded style={styles.input}>
         <Input placeholder={translate.place_medical_certificate} />
       </Item>
-      <Spacer />
+      <Spacer /> */}
       <ButtonUI title={translate.print} onPress={submit} />
+      <Spacer/>
     </Content>
   );
 };

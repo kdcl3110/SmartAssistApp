@@ -16,7 +16,6 @@ import translate from '../../containers/language/language';
 
 // create a component
 const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
-
   const getSelect = (nationality = [], response) => {
     let value;
     nationality.forEach((e, i) => {
@@ -88,8 +87,10 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={translate.faculty}
         label={'name'}
         options={faculty}
-        selectedValue={getSelect(faculty, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(faculty, responseUser[25])}
+        onValueChange={(value) => {
+          replaceResponseUser({ ...responseUser, 25: value });
+        }}
       />
       <Spacer size={10} />
       <Text style={styles.label}>{translate.branch}</Text>
@@ -98,8 +99,10 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={translate.first_Choice}
         label={'name'}
         options={filiere}
-        selectedValue={getSelect(filiere, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(filiere, responseUser[27])}
+        onValueChange={(value) => {
+          replaceResponseUser({ ...responseUser, 27: value });
+        }}
       />
       <Spacer size={10} />
       {/* <Text style={styles.label}>Département d'Origine</Text> */}
@@ -108,8 +111,10 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={translate.sec_Choice}
         label={'name'}
         options={filiere}
-        selectedValue={getSelect(filiere, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(filiere, responseUser[28])}
+        onValueChange={(value) => {
+          replaceResponseUser({ ...responseUser, 28: value });
+        }}
       />
       <Spacer size={10} />
       {/* <Text style={styles.label}>Département d'Origine</Text> */}
@@ -118,8 +123,10 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={translate.third_choice}
         label={'name'}
         options={filiere}
-        selectedValue={getSelect(filiere, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(filiere, responseUser[29])}
+        onValueChange={(value) => {
+          replaceResponseUser({ ...responseUser, 29: value });
+        }}
       />
       <Spacer />
       <Text style={styles.label}>{translate.level}</Text>
@@ -128,8 +135,10 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={translate.level}
         label={'name'}
         options={level}
-        selectedValue={getSelect(level, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(level, responseUser[26])}
+        onValueChange={(value) => {
+          replaceResponseUser({ ...responseUser, 26: value });
+        }}
       />
       <Spacer />
       <Text style={styles.label}>{translate.status}</Text>
@@ -138,8 +147,10 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
         placeholder={translate.status}
         label={'name'}
         options={status}
-        selectedValue={getSelect(status, responseUser[1])}
-        onValueChange={(val) => replaceTravelInput({ ...travelInput, toTown: val })}
+        selectedValue={getSelect(status, responseUser[30])}
+        onValueChange={(value) => {
+          replaceResponseUser({ ...responseUser, 30: value });
+        }}
       />
       <Spacer />
     </Content>

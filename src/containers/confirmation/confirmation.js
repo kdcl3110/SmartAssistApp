@@ -17,8 +17,8 @@ import format from '../../lib/formt-date';
 // create a component
 const Confirmation = ({ responseUser, replaceResponseUser, printPdf, createEtatCivil }) => {
   const [load, setLoad] = useState(false);
+  
   const submit = async () => {
-    
     const values = {
       user_id: 1,
       code: 'kb1561',
@@ -34,7 +34,7 @@ const Confirmation = ({ responseUser, replaceResponseUser, printPdf, createEtatC
       email: responseUser[9],
       telephone: responseUser[10],
       num_cni: responseUser[11],
-      adresse: responseUser[4 ],
+      adresse: responseUser[4],
       date_rdv: responseUser[3],
     };
     console.log(values);
@@ -61,7 +61,7 @@ const Confirmation = ({ responseUser, replaceResponseUser, printPdf, createEtatC
             style={{ backgroundColor: Colors.brandPrimary }}
             onPress={async () => {
               pages.current.scrollToPage(1);
-              Actions.addRef('confirm_infos', pages.current);
+              Actions.addRef('Confirmation', pages.current);
               // console.log('test');
               // submit();
             }}
@@ -70,46 +70,46 @@ const Confirmation = ({ responseUser, replaceResponseUser, printPdf, createEtatC
           </Fab>
         </View>
         <View style={{ flex: 1 }}>
-          <Confirm2 />
+          <Confirm2 responseUser={responseUser} replaceResponseUser={replaceResponseUser} />
           <Fab
             position="bottomRight"
             style={{ backgroundColor: Colors.brandPrimary }}
             onPress={() => {
               pages.current.scrollToPage(2);
-              Actions.addRef('confirm_infos', pages.current);
+              Actions.addRef('Confirmation', pages.current);
             }}
           >
             <Icon name="arrow-forward" />
           </Fab>
         </View>
         <View style={{ flex: 1 }}>
-          <Confirm3 />
+          <Confirm3 responseUser={responseUser} replaceResponseUser={replaceResponseUser} />
           <Fab
             position="bottomRight"
             style={{ backgroundColor: Colors.brandPrimary }}
             onPress={() => {
               pages.current.scrollToPage(3);
-              Actions.addRef('confirm_infos', pages.current);
+              Actions.addRef('Confirmation', pages.current);
             }}
           >
             <Icon name="arrow-forward" />
           </Fab>
         </View>
         <View style={{ flex: 1 }}>
-          <Confirm4 />
+          <Confirm4 responseUser={responseUser} replaceResponseUser={replaceResponseUser} />
           <Fab
             position="bottomRight"
             style={{ backgroundColor: Colors.brandPrimary }}
             onPress={() => {
               pages.current.scrollToPage(4);
-              Actions.addRef('confirm_infos', pages.current);
+              Actions.addRef('Confirmation', pages.current);
             }}
           >
             <Icon name="arrow-forward" />
           </Fab>
         </View>
         <View style={{ flex: 1 }}>
-          <Confirm5 />
+          <Confirm5 responseUser={responseUser} replaceResponseUser={replaceResponseUser} submit={submit} />
         </View>
       </Pages>
     </Container>

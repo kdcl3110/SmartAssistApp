@@ -99,7 +99,7 @@ const Register = ({ signup }) => {
             color={Colors.brandPrimary}
             onChangeText={(value) => setValue('password', value)}
             style={styles.input}
-            placeholder="password"
+            placeholder={translate.password}
           />
           {errors.password && <Messages message={errors.password.message} />}
           <View style={{ marginTop: 10 }} />
@@ -108,7 +108,7 @@ const Register = ({ signup }) => {
             color={Colors.brandPrimary}
             onChangeText={(value) => setValue('password_confirmation', value)}
             style={styles.input}
-            placeholder="password confirm"
+            placeholder={translate.password_confirm}
           />
           {errors.password_confirmation && (
             <Messages message={errors.password_confirmation.message} />
@@ -131,19 +131,20 @@ const Register = ({ signup }) => {
             </View>
             <TouchableOpacity onPress={() => Actions.pop()} style={{ marginVertical: 15 }}>
               <Text>
-                Do you have an account ?{' '}
+                {translate.you_have_account} {' '}
                 <Text style={{ color: Colors.brandPrimary, fontFamily: 'Montserrat bold' }}>
-                  Login
+                  {translate.login}
                 </Text>
               </Text>
             </TouchableOpacity>
-            <Text>Or with</Text>
+            <Text>{translate.or_with}</Text>
           </View>
           <View
             style={{
               marginTop: 10,
               flexDirection: 'row',
               justifyContent: 'space-around',
+              alignItems: 'center',
               width: '70%',
             }}
           >
@@ -161,8 +162,8 @@ const Register = ({ signup }) => {
               <Image
                 source={require('../../assets/images/google.png')}
                 style={{
-                  width: 35,
-                  height: 35,
+                  width: 30,
+                  height: 30,
                 }}
                 resizeMode="contain"
               />
