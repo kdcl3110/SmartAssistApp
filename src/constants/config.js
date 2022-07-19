@@ -11,9 +11,13 @@ export default {
   dateFormat: 'Do MMM YYYY',
 
   // API
+  // apiBaseUrl: isDevEnv
+  //   ? 'https://safe-dawn-79771.herokuapp.com/api/'
+  //   : 'https://safe-dawn-79771.herokuapp.com/api/',
+
   apiBaseUrl: isDevEnv
-    ? 'https://safe-dawn-79771.herokuapp.com/api/'
-    : 'https://safe-dawn-79771.herokuapp.com/api/',
+    ? 'http://192.168.0.156:8000/api/'
+    : 'http://192.168.0.156:8000/api/',
 
   // Google Analytics - uses a 'dev' account while we're testing
   gaTrackingId: isDevEnv ? 'UA-84284256-2' : 'UA-84284256-1',

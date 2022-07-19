@@ -31,7 +31,7 @@ const Confirmation1 = ({ responseUser, replaceResponseUser, submit }) => {
 
   useEffect(() => {
     console.log(responseUser);
-    Toast.showSuccess('Vérifiez vos informations');
+    // Toast.showSuccess('Vérifiez vos informations');
   }, []);
 
   return (
