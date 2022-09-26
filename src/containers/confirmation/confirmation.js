@@ -105,7 +105,9 @@ const Confirmation = ({
       const response5 = await createDataStudent(dataStudent);
       if (response5.data) {
         const response6 = await printPdf(response5.data.id);
-        download.dowloadPDF(response6.data.fiche, setLoad);
+        await download.dowloadPDF(response6.data.fiche, setLoad);
+
+        Actions.pop();
       }
     } catch (error) {
       console.log(error);
@@ -156,9 +158,9 @@ const Confirmation = ({
 
     try {
       const response = await generateFiche(values);
-      const link = response.data.fiche.replace('\n', '');
+      const link = response.data.fiche?.replace('\\n', '');
       console.log(link);
-      // download.dowloadPDF(link, setLoad);
+      download.dowloadPDF(link, setLoad);
     } catch (error) {
       console.log(error);
     }

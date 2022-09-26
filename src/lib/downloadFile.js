@@ -41,6 +41,6 @@ export const downloadHistory = async (url, setLoad) => {
       //Showing alert after successful downloading
       setLoad(false);
       console.log('res -> ', JSON.stringify(res));
-      alert(`translate.report_downloaded`);
+      alert("Votre fiche a été téléchagée vérifiez vos téléchargements");
     });
 };
